@@ -4,13 +4,25 @@ import {ReactComponent as Logo} from '../Assets/Owl-HEAD.svg'
 
 export default function Header() {
     return (
-        <header className={style.ContainerHeader}>
-            <Logo/>
-            <nav className={style.ContainerNav}>
-                <a href="/" className={style.Button}>Home</a>
-                <a href="/" className={style.Button}>Sobre</a>
-                <a href="/" className={style.Button}>Login</a>
-            </nav>
+        <header className={style.ContainerHeaderBG}>
+            
+            <section className={style.ContainerHeader}>
+                <div className={style.LogoHeader}>
+                    <a href="/" className={style.Logo}><Logo/></a>
+                </div>
+                
+                <div>
+                    <nav className={style.ContainerNav}>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/">Sobre</a></li>
+                        <li><a href="/" className={style.buttonLogin}>Login</a></li>
+                    </ul>
+                </nav>
+                </div>
+                
+            </section>
+            
         </header>
     )
 }

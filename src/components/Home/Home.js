@@ -1,13 +1,8 @@
 import React from 'react'
 import Header from './Header'
 import style from './home.module.css'
-<<<<<<< HEAD:src/components/Home/Home.js
-import {ReactComponent as Computer} from '../../Assets/computer.svg'
 import LogoHome from '../../Assets/Owl-HEADLogo-Home.png'
-=======
-import Logo from '../Assets/computer.svg'
-import LogoHome from '../Assets/Owl-HEADLogo-Home.png'
->>>>>>> b8f8be8e636a4eecaacacd2e7bad50d68e72be93:src/components/Home.js
+import Logo from '../../Assets/computer.svg'
 
 export default function Home() {
     return (

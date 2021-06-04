@@ -1,0 +1,10 @@
+.ContainerMain{
+    width: 100%;
+    height: 85vh;
+    background-color: #243447;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2%;
+    align-items: center;
+    justify-content: center;
+}

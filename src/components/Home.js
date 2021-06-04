@@ -11,10 +11,10 @@ export default function Home() {
             <section className={style.ContainerMain}>
                 <div className={style.ContainerImgs}>
                     <div className={style.LogoPrincipal}>
-                        <img src={LogoHome}/>
+                        <img src={LogoHome} alt="Owl Academy - Logo"/>
                     </div>
                     <div className={style.Computer}>
-                        <img src={Logo}/>
+                        <img src={Logo} alt="Owl Academy - Logo Maior"/>
                     </div>
                 </div>
             </section>

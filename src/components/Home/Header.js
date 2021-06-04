@@ -1,6 +1,6 @@
 import React from 'react'
 import style from './header.module.css'
-import {ReactComponent as Logo} from '../Assets/Owl-HEAD.svg'
+import {ReactComponent as Logo} from '../../Assets/Owl-HEAD.svg'
 
 export default function Header() {
     return (

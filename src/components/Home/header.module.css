@@ -1,35 +1,69 @@
-.ContainerHeader{
-    width: 100%;
-    height: 15vh;
-    background: #2E3E51;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-left: 2%;
-    padding-right: 2%;
+ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
 }
 
-.ContainerNav{
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    width: 30%;
-    height: 50%;
-}
-
-.Button{
-    padding: 5%;
-    border: 0;
-    background-color: #2E3E51;
+a {
     text-decoration: none;
-    color: white;
-    font-size: 24px;
 }
 
-.Button:nth-child(3){
-    width: 33.33%;
-    text-align: center;
+.ContainerHeaderBG{
+    background: #2E3E51;
+}
+
+.ContainerHeader{
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 15px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.LogoHeader{
+    margin: 0 10px;
+}
+
+.ContainerNav ul{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.ContainerNav a{
+    margin: 5px;
+    color: #ffffff;
+    font-size: 1.25em;
+    display: block;
+    padding: 1em;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    margin-right: 10px;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.ContainerNav a:hover {
+    margin: 5px;
+    color: #ffffff;
     background-color: #005CC9;
     border-radius: 10px;
 }
+
+.buttonLogin{
+    margin: 5px;
+    background-color: #005CC9;
+}
+
+@media(max-width: 425px){
+    .LogoHeader{
+        margin: 0 auto;
+    }
+}
+
+@media(max-width: 220px){
+    .ContainerNav ul{
+        justify-content: center;
+    }
+} 

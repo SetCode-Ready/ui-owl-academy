@@ -18,17 +18,19 @@ body{
     justify-content: center;
 }
 .LogoPrincipal{
+    margin-right: 90px;
     max-width: 30%;
-    min-width: 25%;
 }
 
 .Computer{
-    max-width: 100%;
-    min-width: 65%;
+    max-width: 60%;
 }
-
+.Computer img{
+    max-width: 100%;
+}
 @media(max-width: 670px){
     .LogoPrincipal{
+        margin: 0 auto;
         max-width: 100%;
     }
 
@@ -37,7 +39,7 @@ body{
     }
     
     .Computer{
-        justify-content: center;
+        margin: 0 auto;
         max-width: 100%;
     }
 

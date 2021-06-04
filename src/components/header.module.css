@@ -55,3 +55,15 @@ a {
     margin: 5px;
     background-color: #005CC9;
 }
+
+@media(max-width: 425px){
+    .LogoHeader{
+        margin: 0 auto;
+    }
+}
+
+@media(max-width: 220px){
+    .ContainerNav ul{
+        justify-content: center;
+    }
+}

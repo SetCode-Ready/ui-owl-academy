@@ -61,9 +61,3 @@ a {
         margin: 0 auto;
     }
 }
-
-@media(max-width: 220px){
-    .ContainerNav ul{
-        justify-content: center;
-    }
-} 

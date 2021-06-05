@@ -1,5 +1,5 @@
 .ContainerMain{
-    width: 100vw;
+    width: 100%;
     height: auto;
     background-color: #243447;
     display: flex;
@@ -31,11 +31,19 @@
     padding: 5%;
 }
 
+.Content:hover{
+    color: #ffffff;
+    background-color: #005CC9;
+    border-radius: 10px;
+    transition: 1s;
+}
+
 .Content span {
     color: white;
     font-size: 22px;
     text-align: center;
     margin-bottom: -1%;
+    font-weight: bold;
 }
 
 .Content p{
@@ -43,6 +51,7 @@
     font-size: 22px;
     text-align: center;
     padding: 2%;
+    font-weight: bold;
 }
 
 @media screen and (max-width: 700px){

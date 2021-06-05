@@ -45,10 +45,10 @@ a {
 }
 
 .ContainerNav a:hover {
-    margin: 5px;
     color: #ffffff;
     background-color: #005CC9;
     border-radius: 10px;
+    transition: 1s;
 }
 
 .buttonLogin{

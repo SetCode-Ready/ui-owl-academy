@@ -14,36 +14,42 @@ export default function DashboarAdmin() {
             <HeaderAdmin/>
             <section className={style.ContainerMain}>
                 <div className={style.ContainerContent}>
-                    <div className={style.Content}>
+                    <a className={style.Content} href="/adm">
                         <CadasPro/>
                         <p>Cadastrar</p>
                         <span>Professor</span>
-                    </div>
-                    <div className={style.Content}>
+                    </a>
+                
+                    <a className={style.Content} href="/adm">
                         <CadasEst/>
                         <p>Cadastrar</p>
                         <span>Alunos</span>
-                    </div>
-                    <div className={style.Content}>
+                    </a>
+                    
+                    <a className={style.Content}  href="/adm">
                         <ContTur/>
                         <p>Cadastrar</p>
                         <span>Turmas</span>
-                    </div>
-                    <div className={style.Content}>
+                    </a>
+
+                    <a className={style.Content} href="/adm">
                         <Prof/>
                         <p>Listar</p>
                         <span>Professor</span>
-                    </div>
-                    <div className={style.Content}>
+                    </a>
+                    
+                    <a className={style.Content} href="/adm">
                         <Aluno/>
                         <p>Listar</p>
                         <span>Alunos</span>
-                    </div>
-                    <div className={style.Content}>
+                    </a>
+
+                    <a className={style.Content} href="/adm">
                         <Class/>
                         <p>Listar</p>
                         <span>Turmas</span>
-                    </div>
+                    </a>
+                    
                 </div>
             </section>
         </>

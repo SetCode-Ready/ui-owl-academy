@@ -12,9 +12,9 @@ export default function HeaderAdmin() {
 
             <section className={style.ContainerHeaderAdm}>
 
-                <div className={style.LogoHeaderAdm}>
-                    <a href="/admin" className={style.Logo}><Logo/></a>
-                </div>
+                <a href="/admin" className={style.LogoHeaderAdm}>
+                    <Logo/>
+                </a>
 
                 <div className={style.ContainerUserAdm}>
 

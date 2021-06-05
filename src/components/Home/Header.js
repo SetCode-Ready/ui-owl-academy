@@ -7,9 +7,9 @@ export default function Header() {
         <header className={style.ContainerHeaderBG}>
             
             <section className={style.ContainerHeader}>
-                <div className={style.LogoHeader}>
-                    <a href="/" className={style.Logo}><Logo/></a>
-                </div>
+                <a href="/" className={style.LogoHeader}>
+                    <Logo/>
+                    </a>
                 
                 <div>
                     <nav className={style.ContainerNav}>

@@ -23,6 +23,9 @@ a {
 
 .LogoHeaderAdm{
     margin: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .ContainerUserAdm ul{
@@ -44,7 +47,7 @@ a {
 
 .iconAdm:hover{
     background-color: #005CC9;
-    transition: 1s;
+    transition: 0.3s;
 }
 
 .ContainerLoginAdm{
@@ -59,7 +62,7 @@ a {
     color: #ffffff;
     background-color: #005CC9;
     border-radius: 10px;
-    transition: 1s;
+    transition: 0.3s;
 }
 
 .ContainerLoginAdm p{
@@ -85,7 +88,7 @@ a {
     }
     .ContainerLoginAdm p{
         display: none;
-        transition: 1s;
+        transition: 0.3s;
     }
 }
 

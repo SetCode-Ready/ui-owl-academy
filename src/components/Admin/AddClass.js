@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import HeaderAdmin from './HeaderAdmin'
 import style from './addClass.module.css'
 
-export default function addClass() {
+export default function AddClass() {
     return (
         <>
             <HeaderAdmin/>

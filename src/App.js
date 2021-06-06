@@ -13,7 +13,7 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route path="/admin" component={DashboardAdmin}/>
           <Route path="/addclass" component={addClass}/>
-          <Route path="/serachclass" component={SearchClass}/>
+          <Route path="/searchclass" component={SearchClass}/>
         </Switch>
       </BrowserRouter>
     </>

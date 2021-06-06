@@ -38,7 +38,7 @@ export default function HeaderAdmin() {
                         </li>
 
                         <li>
-                            <a href="/admin" className={style.iconAdm}>
+                            <a href="/" className={style.iconAdm}>
                                 <IconContext.Provider value={{color: 'white', size: '1.5rem', style:{flexGrow: 1}}}>
                                     <FiLogOut/>
                                 </IconContext.Provider>

@@ -3,12 +3,13 @@ import api from '../../config/api';
 import HeaderAdmin from './HeaderAdmin'
 import style from './searchClass.module.css'
 import {Link} from 'react-router-dom'
+import loadingIMG from '../../Assets/loading.svg'
 
 
 export default function SearchTeacher() {
 
     const [content, setContent] = React.useState();
-    const [loading, setLoading] = React.useState(false)
+    const [loading, setLoading] = React.useState(true)
     const [search, setSearch] = React.useState('')
 
     React.useEffect( ()=> {
@@ -40,7 +41,7 @@ export default function SearchTeacher() {
                         <input value={search} onChange={({target}) => setSearch(target.value)}  type='text' placeholder="Digite o codigo da turma"/>
                     </div>
                     <div className={loading === true ? style.ContentLoading : style.ContentBody}>
-                        <img src="https://img.icons8.com/plasticine/2x/loading-sign.png" alt="loading" />
+                        <img src={loadingIMG} alt="loading" />
                         {content && content.map(item => {
                             return(
                                 <Link to={`/searchclass/${item.id}`} key={item.created_at} className={style.Class}>

@@ -44,7 +44,7 @@ export default function DashboardAdmin() {
                         <span>Alunos</span>
                     </a>
 
-                    <a className={style.Content} href="/admin">
+                    <a className={style.Content} href="/searchclass">
                         <Class/>
                         <p>Listar</p>
                         <span>Turmas</span>

@@ -26,7 +26,7 @@ export default function DashboardAdmin() {
                         <span>Alunos</span>
                     </a>
                     
-                    <a className={style.Content}  href="/addclass">
+                    <a className={style.Content}  href="/add-class">
                         <ContTur/>
                         <p>Cadastrar</p>
                         <span>Turmas</span>
@@ -44,7 +44,7 @@ export default function DashboardAdmin() {
                         <span>Alunos</span>
                     </a>
 
-                    <a className={style.Content} href="/searchclass">
+                    <a className={style.Content} href="/search-class">
                         <Class/>
                         <p>Listar</p>
                         <span>Turmas</span>

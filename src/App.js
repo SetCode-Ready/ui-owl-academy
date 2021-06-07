@@ -13,11 +13,10 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/admin" component={DashboardAdmin}/>
-          <Route path="/addclass" component={AddClass} />
+          <Route path="/add-class" component={AddClass} />
 
-          <Route exact path="/searchclass" component={SearchClass}/>
-            <Route path="/searchclass/:id" component={SearchClassUnique}/>
-
+          <Route exact path="/search-class" component={SearchClass}/>
+            <Route path="/search-class/:id" component={SearchClassUnique}/>
         </Switch>
       </BrowserRouter>
     </>

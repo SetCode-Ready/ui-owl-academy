@@ -44,7 +44,7 @@ export default function SearchTeacher() {
                         <img src={loadingIMG} alt="loading" />
                         {content && content.map(item => {
                             return(
-                                <Link to={`/searchclass/${item.id}`} key={item.created_at} className={style.Class}>
+                                <Link to={`/search-class/${item.id}`} key={item.created_at} className={style.Class}>
                                     <p>{item.class_code}</p>
                                     <p>{item.status}</p>
                                 </Link>

@@ -3,10 +3,9 @@ import HeaderAdmin from './HeaderAdmin'
 import style from './addClass.module.css'
 import api from '../../config/api'
 
-export default function AddClass() {
+export default function AddClass(props) {
 
     const [categorie, setCategorie] = React.useState()
-
     const [code, setCode] = React.useState('')
     const [lotacao, setLotacao] = React.useState('')
     const [status, setStatus] = React.useState(true)
@@ -14,14 +13,36 @@ export default function AddClass() {
     const [message, setMessage] = React.useState()
     const [loading, setLoading] = React.useState(false)
 
-    React.useEffect(() => {
-        async function reque(){
-            const response = await api.get('/class-categorie')
-    
-            setCategorie(response.data)
+    const populateClassCategorie = async () => {
+        const response = await api.get('/class-categorie')
+
+        setCategorie(response.data);
+    }
+
+    const populateForm = async (id) => {
+        const response = await api.get(`/search-class/${id}`);
+
+        if (response) {
+            
+            // Preencher os dados corretamente
+            const { dados } = response;
+
+            // Setar os dados nos states
+            
         }
-        reque()
-    }, [])
+    }
+
+    React.useEffect(() => {
+        
+        populateClassCategorie();
+
+        const { id } = props.location.state;
+
+        if (id) {
+            populateForm(id);
+        }
+        
+    }, [props.location.state]);
 
     async function handleSubmit(e){
         e.preventDefault()

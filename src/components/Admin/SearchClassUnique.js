@@ -1,16 +1,20 @@
 import React from 'react'
-import {useParams} from 'react-router-dom'
+import {useHistory, useParams} from 'react-router-dom'
 import api from '../../config/api'
 import HeaderAdmin from './HeaderAdmin'
 import style from './searchClassUnique.module.css'
 import perfil from '../../Assets/perfil.jpg'
 import{ReactComponent as Editar} from '../../Assets/Editar.svg'
 import{ReactComponent as Deletar} from '../../Assets/Deletar.svg'
-import{ReactComponent as Alterar} from '../../Assets/Alterar.svg'
-
 
 export default function SearchClassUnique() {
     const { id } = useParams()
+
+    const history = useHistory();
+    
+    const handleEdit = () => {
+      history.push('/add-class', { id })
+    } 
 
     const [content, setContent] = React.useState()
 
@@ -33,7 +37,8 @@ export default function SearchClassUnique() {
               <h2>Perfil da Turma</h2>
               <div className={style.ContainerContentHeader} >
                 <div className={style.ContainerPhoto} style={{backgroundImage: `url(${perfil})`}}/>
-                <div className={style.ContainerAction} >
+                
+                <div className={style.ContainerAction} onClick={handleEdit}>
                   <Editar/>
                   <p>Editar</p>
                 </div>
@@ -41,11 +46,6 @@ export default function SearchClassUnique() {
                 <div className={style.ContainerAction} >
                   <Deletar/>
                   <p>Deletar</p>
-                </div>
-
-                <div className={style.ContainerAction} >
-                  <Alterar/>
-                  <p>Alterar</p>
                 </div>
 
               </div>

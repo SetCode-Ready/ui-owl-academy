@@ -16,7 +16,7 @@ function App() {
           <Route path="/add-class" component={AddClass} />
 
           <Route exact path="/search-class" component={SearchClass}/>
-            <Route path="/search-class/:id" component={SearchClassUnique}/>
+          <Route path="/search-class/:id" component={SearchClassUnique}/>
         </Switch>
       </BrowserRouter>
     </>

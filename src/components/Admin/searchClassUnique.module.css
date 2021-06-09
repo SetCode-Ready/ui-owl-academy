@@ -27,8 +27,8 @@
 
 .ContainerContentHeader{
     display: grid;
-    gap: 1%;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 3%;
+    grid-template-columns: 1fr 1fr 1fr;
     width: 70%;
     height: 40%;
 }

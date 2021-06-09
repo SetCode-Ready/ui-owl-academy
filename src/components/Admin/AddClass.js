@@ -5,7 +5,6 @@ import api from '../../config/api'
 import { useHistory, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { FiCornerDownLeft } from 'react-icons/fi'
 
 export default function AddClass() {
     
@@ -83,7 +82,7 @@ export default function AddClass() {
             toast.warn("Preencha os campos corretamente")
             return
         }
-        
+
         let response
         try {
             setLoading(true)

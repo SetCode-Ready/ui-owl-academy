@@ -18,8 +18,7 @@ export default function SearchTeacher() {
             try {
                 setLoading(true)
                 const response = await api.get('/school-class')
-                setContent(response.data)
-                console.log(response.data)
+                setContent(response.data.reverse())
             } catch (error) {
                 
             } finally{

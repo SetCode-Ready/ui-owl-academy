@@ -8,15 +8,29 @@ import{ReactComponent as Editar} from '../../Assets/Editar.svg'
 import{ReactComponent as Deletar} from '../../Assets/Deletar.svg'
 
 export default function SearchClassUnique() {
+  const [content, setContent] = React.useState()
     const { id } = useParams()
 
     const history = useHistory();
     
     const handleEdit = () => {
       history.push(`/add-class/${id}`)
-    } 
+    }
 
-    const [content, setContent] = React.useState()
+    const handleDelete = async () => {
+      const modal = window.confirm("Você deseja mesmo deletar essa turma?")
+
+      if(modal){
+        try {
+          const response = await api.delete(`/school-class/${id}`)
+
+          history.push('/search-class')
+        } catch (error) {
+          alert(error)
+        }
+      }
+    }
+
 
     React.useEffect(() => {
       async function req(){
@@ -43,7 +57,7 @@ export default function SearchClassUnique() {
                   <p>Editar</p>
                 </div>
 
-                <div className={style.ContainerAction} >
+                <div className={style.ContainerAction} onClick={handleDelete}>
                   <Deletar />
                   <p>Deletar</p>
                 </div>

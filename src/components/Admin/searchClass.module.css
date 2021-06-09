@@ -76,7 +76,7 @@
 
 
 
-.Class:nth-child(1n+1){
+.Class:nth-child(2n){
     background-color: #243447;
 }
 

@@ -14,13 +14,13 @@ export default function DashboardAdmin() {
             <HeaderAdmin/>
             <section className={style.ContainerMain}>
                 <div className={style.ContainerContent}>
-                    <a className={style.Content} href="/admin">
+                    <a className={style.Content} href="/add-teacher">
                         <CadasPro/>
                         <p>Cadastrar</p>
                         <span>Professor</span>
                     </a>
                 
-                    <a className={style.Content} href="/admin">
+                    <a className={style.Content} href="/add-student">
                         <CadasEst/>
                         <p>Cadastrar</p>
                         <span>Alunos</span>
@@ -32,13 +32,13 @@ export default function DashboardAdmin() {
                         <span>Turmas</span>
                     </a>
 
-                    <a className={style.Content} href="/admin">
+                    <a className={style.Content} href="/search-teacher">
                         <Prof/>
                         <p>Listar</p>
                         <span>Professor</span>
                     </a>
                     
-                    <a className={style.Content} href="/admin">
+                    <a className={style.Content} href="/search-student">
                         <Aluno/>
                         <p>Listar</p>
                         <span>Alunos</span>

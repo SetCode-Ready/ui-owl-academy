@@ -72,6 +72,11 @@
     font-weight: bold;
 }
 
+.form p {
+    padding: 1%;
+    color: white;
+}
+
 .submit{
     margin: 60px auto 0 auto;
     box-shadow: 1px 1px 5px rgba(0,0,0, 0.5);

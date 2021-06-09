@@ -5,17 +5,18 @@ import api from '../../config/api'
 import { useHistory, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { FiCornerDownLeft } from 'react-icons/fi'
 
 export default function AddClass() {
     
     const {id} = useParams()
     const history = useHistory()
 
-    const [categorie, setCategorie] = React.useState()
     const [code, setCode] = React.useState('')
     const [lotacao, setLotacao] = React.useState('')
-    const [status, setStatus] = React.useState(true)
+    const [categorie, setCategorie] = React.useState()
     const [ensino, setEnsino] = React.useState(1)
+    const [status, setStatus] = React.useState(true)
     const [loading, setLoading] = React.useState(false)
     
     const populateClassCategorie = async () => {
@@ -56,7 +57,12 @@ export default function AddClass() {
 
         let response;
         try{
-            response = await api.post(`http://api-owl-academy.herokuapp.com/school-class/${id}`, {
+
+            if(code.length === 0 || lotacao.length === 0){
+                toast.warn("Preencha os campos corretamente")
+                return
+            }
+            response = await api.put(`/school-class/${id}`, {
                 class_code: code,
                 class_categorie: ensino,
                 max_students: Number(lotacao),
@@ -72,6 +78,12 @@ export default function AddClass() {
 
     async function handleSubmit(e){
         e.preventDefault()
+
+        if(code.length === 0 || lotacao.length === 0){
+            toast.warn("Preencha os campos corretamente")
+            return
+        }
+        
         let response
         try {
             setLoading(true)
@@ -104,7 +116,7 @@ export default function AddClass() {
                     <form className={style.form} onSubmit={id ? handleUpdate : handleSubmit} >
                         <fieldset>
                             <label>Código da turma</label>
-                            <input value={code} type="text" onChange={({target}) => setCode(target.value)}></input>
+                            <input value={code} onChange={({target}) => setCode(target.value)} type="text" />
                         </fieldset>
                         
                         <fieldset>

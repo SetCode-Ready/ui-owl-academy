@@ -5,16 +5,19 @@ import DashboardAdmin from './components/Admin/DashboardAdmin';
 import AddClass from './components/Admin/AddClass';
 import SearchClass from './components/Admin/SearchClass'
 import SearchClassUnique from './components/Admin/SearchClassUnique';
+import {ToastContainer } from 'react-toastify';
 
 function App() {
+
+
   return (
     <>
+      <ToastContainer />
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/admin" component={DashboardAdmin}/>
-          <Route path="/add-class" component={AddClass} />
-
+          <Route path="/add-class/:id?" component={AddClass} />
           <Route exact path="/search-class" component={SearchClass}/>
           <Route path="/search-class/:id" component={SearchClassUnique}/>
         </Switch>

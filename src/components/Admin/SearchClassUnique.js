@@ -13,7 +13,7 @@ export default function SearchClassUnique() {
     const history = useHistory();
     
     const handleEdit = () => {
-      history.push('/add-class', { id })
+      history.push(`/add-class/${id}`)
     } 
 
     const [content, setContent] = React.useState()
@@ -21,7 +21,7 @@ export default function SearchClassUnique() {
     React.useEffect(() => {
       async function req(){
         const response = await api.get(`/school-class/${id}`)
-        console.log(response)
+
 
         if(response.status === 200) setContent(response.data)
       }
@@ -44,10 +44,10 @@ export default function SearchClassUnique() {
                 </div>
 
                 <div className={style.ContainerAction} >
-                  <Deletar/>
+                  <Deletar />
                   <p>Deletar</p>
                 </div>
-
+                
               </div>
               <div className={style.ContainerDetails} >
                   {content && <p>Nome da Turma: {content.class_code}</p>}

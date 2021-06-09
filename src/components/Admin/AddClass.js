@@ -2,47 +2,73 @@ import React from 'react'
 import HeaderAdmin from './HeaderAdmin'
 import style from './addClass.module.css'
 import api from '../../config/api'
+import { useHistory, useParams } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
-export default function AddClass(props) {
+export default function AddClass() {
+    
+    const {id} = useParams()
+    const history = useHistory()
 
     const [categorie, setCategorie] = React.useState()
     const [code, setCode] = React.useState('')
     const [lotacao, setLotacao] = React.useState('')
     const [status, setStatus] = React.useState(true)
     const [ensino, setEnsino] = React.useState(1)
-    const [message, setMessage] = React.useState()
     const [loading, setLoading] = React.useState(false)
-
+    
     const populateClassCategorie = async () => {
         const response = await api.get('/class-categorie')
-
+        
         setCategorie(response.data);
     }
+    
+    const populateForm = React.useCallback(async (id) => {
+        let response
+        try{
+            response = await api.get(`/school-class/${id}`);
+            const { data } = response;
+        
+            setCode(data.class_code)
+            setLotacao(data.max_students)
+            setStatus(data.status)
 
-    const populateForm = async (id) => {
-        const response = await api.get(`/search-class/${id}`);
-
-        if (response) {
-            
-            // Preencher os dados corretamente
-            const { dados } = response;
-
-            // Setar os dados nos states
-            
+        } catch {
+            history.push('/add-class/')
         }
-    }
+    },[history])
+
 
     React.useEffect(() => {
         
         populateClassCategorie();
 
-        const { id } = props.location.state;
-
-        if (id) {
-            populateForm(id);
+        if(id){
+            populateForm(id)
         }
-        
-    }, [props.location.state]);
+
+
+    }, [history, id, populateForm]);
+
+    const handleUpdate = async(e) => {
+        e.preventDefault()
+
+        let response;
+        try{
+            response = await api.post(`http://api-owl-academy.herokuapp.com/school-class/${id}`, {
+                class_code: code,
+                class_categorie: ensino,
+                max_students: Number(lotacao),
+                status,
+                institute: "7292c035-923b-44dc-9b4d-8803fad202af"
+            })
+
+            if(response.status === 200)toast.success('Turma Atualizada!')
+        } catch(error){
+            toast.error('Erro! Turma não atualizada')
+        }
+    }
 
     async function handleSubmit(e){
         e.preventDefault()
@@ -57,15 +83,14 @@ export default function AddClass(props) {
                 institute: "7292c035-923b-44dc-9b4d-8803fad202af"
             })
 
-            if(response.statusText === 'Created') setMessage('Turma criada')
+            if(response.status === 201)toast.success('Turma Criada!')
             
         } catch (error) {
-            setMessage('Erro turma não criada')
+            toast.error('Erro! Turma não criada')
         } finally{
             setLoading(false)
         }
     }
-
 
     return (
         <>
@@ -74,9 +99,9 @@ export default function AddClass(props) {
                 <div className={style.containerDiv}>
                     
                     
-                    <h1 className={style.title}>Cadastrar Turma</h1>
+                    <h1 className={style.title}>{id ? 'Atualizar Turma' : 'Cadastrar Turma'}</h1>
 
-                    <form className={style.form} onSubmit={handleSubmit} >
+                    <form className={style.form} onSubmit={id ? handleUpdate : handleSubmit} >
                         <fieldset>
                             <label>Código da turma</label>
                             <input value={code} type="text" onChange={({target}) => setCode(target.value)}></input>
@@ -105,13 +130,9 @@ export default function AddClass(props) {
                             <label>Lotação</label>
                             <input value={lotacao} onChange={({target}) => setLotacao(target.value)} type="number"/>
                         </fieldset>
-                        {loading ? <button disabled className={style.submit} type="submit">Cadastrar</button> : <button className={style.submit} type="submit">Cadastrar</button>}
+                        {loading ? <button disabled className={style.submit} type="submit">{id ? 'Atualizar' : 'Cadastrar'}</button> : <button className={style.submit} type="submit">{id ? 'Atualizar' : 'Cadastrar'}</button>}
                     </form>
-                    <div className={style.ContainerMessage} >
-                        <p className={style.Message} >{message}</p>
-                    </div>
                 </div>
-                
             </section>
         </>
     )

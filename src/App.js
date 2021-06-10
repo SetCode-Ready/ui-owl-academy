@@ -9,7 +9,7 @@ import {ToastContainer } from 'react-toastify';
 import SearchStudent from './components/Admin/SearchStudent';
 import SearchTeacher from './components/Admin/SearchTeacher';
 import AddStudent from './components/Admin/addStudent';
-
+import AddTeacher from './components/Admin/addTeacher';
 function App() {
 
 
@@ -30,7 +30,7 @@ function App() {
           <Route path="/add-student/:id?" component={AddStudent} />
 
           <Route exact path="/search-teacher" component={SearchTeacher} />
-          
+          <Route path="/add-teacher/:id?" component={AddTeacher} />
         </Switch>
       </BrowserRouter>
     </>

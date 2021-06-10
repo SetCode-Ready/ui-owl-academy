@@ -43,7 +43,7 @@
 }
 
 .form select, .form input{
-    width: 50%;
+    width: 90%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -51,7 +51,7 @@
 }
 
 .form label{
-    width: 50%;
+    width: 90%;
     display: flex;
     flex-wrap: wrap;
     color: #fff;
@@ -106,4 +106,10 @@
     padding: 2%;
     width: 100%;
     justify-self: center;
+}
+
+@media (max-width: 760px){
+    .form fieldset{
+        width: 100%;
+    }
 }

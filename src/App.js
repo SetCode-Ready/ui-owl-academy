@@ -8,6 +8,7 @@ import SearchClassUnique from './components/Admin/SearchClassUnique';
 import {ToastContainer } from 'react-toastify';
 import SearchStudent from './components/Admin/SearchStudent';
 import SearchTeacher from './components/Admin/SearchTeacher';
+import AddStudent from './components/Admin/addStudent';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
       <ToastContainer />
       <BrowserRouter>
         <Switch>
+
           <Route exact path="/" component={Home} />
           <Route path="/admin" component={DashboardAdmin}/>
           
@@ -25,8 +27,10 @@ function App() {
           <Route path="/search-class/:id" component={SearchClassUnique}/>
 
           <Route path="/search-student" component={SearchStudent} />
+          <Route path="/add-student/:id?" component={AddStudent} />
 
           <Route exact path="/search-teacher" component={SearchTeacher} />
+          
         </Switch>
       </BrowserRouter>
     </>

@@ -6,8 +6,37 @@ import { useHistory, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import perfil from '../../Assets/perfil.jpg'
+import * as yup from 'yup'
+
 
 export default function AddClass() {
+
+    yup.setLocale({
+        mixed: {
+            default: 'é inválido',
+            required: 'Preencha todos os campos obrigatórios',
+        },
+    });
+
+    let schema = yup.object().shape({
+        name: yup.string().required(),
+        father_name: yup.string().required(),
+        mother_name: yup.string().required(),
+        naturalness: yup.string().required(),
+        nationality: yup.string().required(),
+        birth_date: yup.date().required(),
+        formation: yup.string().required(),
+        address_street: yup.string().required(),
+        address_number: yup.string().required(),
+        address_district: yup.string().required(),
+        address_cep: yup.string().required(),
+        address_city: yup.string().required(),
+        address_state: yup.string().required(),
+        phone_number: yup.string().required(),
+        email: yup.string().email().required(),
+        rg: yup.string().required(),
+        cpf: yup.string().required(),
+    })
     
     const {id} = useParams()
     const history = useHistory()
@@ -38,6 +67,7 @@ export default function AddClass() {
     const populateForm = React.useCallback(async (id) => {
         let response
         try{
+
             response = await api.get(`/teacher/${id}`);
             const { data } = response;
         
@@ -81,6 +111,28 @@ export default function AddClass() {
         let response;
         try{
 
+            await schema.validate({
+                name,
+                father_name,
+                mother_name,
+                naturalness,
+                nationality,
+                birth_date,
+                formation,
+                address_street,
+                address_number,
+                address_district,
+                address_cep,
+                address_city,
+                address_state,
+                phone_number,
+                email,
+                rg,
+                cpf,
+            }).catch(function(err){
+                throw(err.errors)
+            })
+
             response = await api.put(`/teacher/${id}`, {
                 name,
                 sex,
@@ -110,7 +162,7 @@ export default function AddClass() {
             }        
 
         } catch(error){
-            toast.error(error.message)
+            toast.error(error[0])
         }
     }
 
@@ -119,10 +171,34 @@ export default function AddClass() {
 
         let response
         try {
+
             setLoading(true)
+
+            await schema.validate({
+                name,
+                father_name,
+                mother_name,
+                naturalness,
+                nationality,
+                birth_date,
+                formation,
+                address_street,
+                address_number,
+                address_district,
+                address_cep,
+                address_city,
+                address_state,
+                phone_number,
+                email,
+                rg,
+                cpf,
+            }).catch(function(err){
+                throw(err.errors)
+            })
+
+            
             response = await api.post('/teacher', {
                 name,
-                sex,
                 father_name,
                 mother_name,
                 naturalness,
@@ -165,8 +241,9 @@ export default function AddClass() {
             }
             
             
-        } catch (Error) {
-            toast.error(Error.message)
+        } catch (error) {
+            console.log(error)
+            toast.error(error[0])
         } finally{
             setLoading(false)
         }

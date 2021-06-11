@@ -1,3 +1,4 @@
+/* eslint-disable no-template-curly-in-string */
 import React from 'react'
 import HeaderAdmin from './HeaderAdmin'
 import style from './addClass.module.css'
@@ -5,8 +6,11 @@ import api from '../../config/api'
 import { useHistory, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import * as yup from 'yup'
 
 export default function AddClass() {
+
+    
     
     const {id} = useParams()
     const history = useHistory()
@@ -57,10 +61,10 @@ export default function AddClass() {
         let response;
         try{
 
-            if(code.length === 0 || lotacao.length === 0){
-                toast.warn("Preencha os campos corretamente")
-                return
-            }
+            await schema.validate({code, lotacao}).catch(function (err) {
+                throw(err.errors)
+            })
+
             response = await api.put(`/school-class/${id}`, {
                 class_code: code,
                 class_categorie: ensino,
@@ -74,21 +78,34 @@ export default function AddClass() {
                 history.push('/search-class')
             }        
         } catch(error){
-            toast.error('Erro! Turma não atualizada')
+            toast.error(error[0])
         }
     }
 
+    yup.setLocale({
+        string:{
+            min: 'O campo código da turma deve ter pelo menos ${min} caracteres'
+        },
+        
+    })
+
+    let schema = yup.object().shape({
+        code: yup.string().min(3).required('preencha todos os campos!'),
+        lotacao: yup.string().required('preencha todos os campos!')
+    })
+
+
     async function handleSubmit(e){
         e.preventDefault()
-
-        if(code.length === 0 || lotacao.length === 0){
-            toast.warn("Preencha os campos corretamente")
-            return
-        }
-
+        
         let response
         try {
             setLoading(true)
+
+            await schema.validate({code, lotacao}).catch(function (err) {
+                throw(err.errors)
+            })
+
             response = await api.post('/school-class', {
                 class_code: code,
                 class_categorie: ensino,
@@ -104,10 +121,12 @@ export default function AddClass() {
             }
             
         } catch (error) {
-            toast.error('Erro! Turma não criada')
+            toast.error(error[0])
         } finally{
             setLoading(false)
         }
+
+
     }
 
     return (

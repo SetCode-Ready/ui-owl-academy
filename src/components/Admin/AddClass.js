@@ -69,7 +69,10 @@ export default function AddClass() {
                 institute: "7292c035-923b-44dc-9b4d-8803fad202af"
             })
 
-            if(response.status === 200)toast.success('Turma Atualizada!')
+            if(response.status === 200){
+                toast.success('Turma Atualizada!', {autoClose: 2000}) 
+                history.push('/search-class')
+            }        
         } catch(error){
             toast.error('Erro! Turma não atualizada')
         }
@@ -94,7 +97,11 @@ export default function AddClass() {
                 institute: "7292c035-923b-44dc-9b4d-8803fad202af"
             })
 
-            if(response.status === 201)toast.success('Turma Criada!')
+            if(response.status === 201){
+                toast.success('Turma Criada!', {autoClose: 2000})
+                setCode('')
+                setLotacao('')
+            }
             
         } catch (error) {
             toast.error('Erro! Turma não criada')

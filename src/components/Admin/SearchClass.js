@@ -20,8 +20,9 @@ export default function SearchTeacher() {
                 setLoading(true)
                 const response = await api.get('/school-class')
                 setContent(response.data.reverse())
+                console.log(response)
             } catch (error) {
-                
+                setContent(['Nenhuma turma encontrada, porfavor cadastre uma!'])
             } finally{
                 setLoading(false)
             }

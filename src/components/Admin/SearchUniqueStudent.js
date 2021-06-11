@@ -15,17 +15,17 @@ export default function SearchClassUnique() {
     const history = useHistory();
     
     const handleEdit = () => {
-      history.push(`/add-class/${id}`)
+      history.push(`/add-student/${id}`)
     }
 
     const handleDelete = async () => {
-      const modal = window.confirm("Você deseja mesmo deletar essa turma?")
+      const modal = window.confirm("Você deseja mesmo deletar esse aluno?")
 
       if(modal){
         try {
-          await api.delete(`/school-class/${id}`)
+          await api.delete(`/studant/${id}`)
 
-          history.push('/search-class')
+          history.push('/search-student')
         } catch (error) {
           alert(error)
         }
@@ -35,11 +35,12 @@ export default function SearchClassUnique() {
 
     React.useEffect(() => {
       async function req(){
-        try {
-          const response = await api.get(`/school-class/${id}`)
-          if(response.status === 200) setContent(response.data)
-        } catch (error) {
-          history.push('/add-class')
+        try{
+            const response = await api.get(`/studant/${id}`)
+
+            if(response.status === 200) setContent(response.data)
+        } catch{
+            history.push('/search-student')
         }
       }
 
@@ -57,20 +58,22 @@ export default function SearchClassUnique() {
                 <div className={style.items}>
                   <ul>
                     <li className={style.perfil}>
-                      <img src={perfil} alt={"Foto da Turma"}/>
+                      <img src={perfil} alt={"Foto do Aluno"}/>
                     </li>
                     <li className={style.ContainerDetails}>
-                      {content && <p>Nome da Turma: {content.class_code}</p>}
-                      {content && <p>Máximo de alunos: {content.max_students}</p>}
-                      {content && <p>Status: {content.status ? 'Ativa': 'Inativa'}</p>}
+                      {content && <p>Nome: {content.name}</p>}
+                      {content && <p>CPF: {content.cpf}</p>}
+                      {content && <p>Rua: {content.address_street}</p>}
+                      {content && <p>Telefone: {content.phone_number}</p>}
+                      {content && <p>Email: {content.email}</p>}
                     </li>
                     <li className={style.edit} onClick={handleEdit}>
                       <img src={Editar} alt={"Botão de Editar"}/>
-                      <p>Editar Turma</p>
+                      <p>Editar Aluno</p>
                     </li>
                     <li className={style.delete} onClick={handleDelete}>
                       <img src={Deletar} alt={"Botão de Deletar"}/>
-                      <p>Apagar Turma</p>
+                      <p>Apagar Aluno</p>
                     </li>
                   </ul>
                 </div>

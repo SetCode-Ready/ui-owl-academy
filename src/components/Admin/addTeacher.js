@@ -12,38 +12,61 @@ export default function AddClass() {
     const {id} = useParams()
     const history = useHistory()
 
-    const [code, setCode] = React.useState('')
-    const [lotacao, setLotacao] = React.useState('')
-    const [categorie, setCategorie] = React.useState()
-    const [ensino, setEnsino] = React.useState(1)
-    const [status, setStatus] = React.useState(true)
+    const [name, setName] = React.useState('')
+    const [sex, setSex] = React.useState('M')
+    const [marital_status, setMarital] = React.useState('Solteiro')
+    const [father_name, setFather] = React.useState('')
+    const [mother_name, setMother] = React.useState('')
+    const [naturalness, setNatural] = React.useState('')
+    const [nationality, setNationality] = React.useState('')
+    const [birth_date, setBirth] = React.useState('')
+    const [formation, setFormation] = React.useState('')
+    const [address_street, setAdress] = React.useState('')
+    const [address_number, setAdressN] = React.useState('')
+    const [address_district, setAdressD] = React.useState('')
+    const [address_complement, setAdressC] = React.useState('')
+    const [address_cep, setAdressCEP] = React.useState('')
+    const [address_city, setCity] = React.useState('')
+    const [address_state, setState] = React.useState('')
+    const [phone_number, setPhone] = React.useState('')
+    const [email, setEmail] = React.useState('')
+    const [rg, setRg] = React.useState('')
+    const [cpf, setCpf] = React.useState('')
+
     const [loading, setLoading] = React.useState(false)
-    
-    const populateClassCategorie = async () => {
-        const response = await api.get('/class-categorie')
-        
-        setCategorie(response.data);
-    }
-    
+
     const populateForm = React.useCallback(async (id) => {
         let response
         try{
-            response = await api.get(`/school-class/${id}`);
+            response = await api.get(`/teacher/${id}`);
             const { data } = response;
         
-            setCode(data.class_code)
-            setLotacao(data.max_students)
-            setStatus(data.status)
-
+            console.log(data)
+            setName(data.name)
+            setSex(data.sex)
+            setFather(data.father_name)
+            setMother(data.mother_name)
+            setNatural(data.naturalness)
+            setNationality(data.nationality)
+            setAdress(data.address_street)
+            setAdressD(data.address_district)
+            setAdressC(data.address_complement)
+            setAdressCEP(data.address_cep)
+            setCity(data.address_city)
+            setState(data.address_state)
+            setPhone(data.phone_number)
+            setEmail(data.email)
+            setRg(data.rg)
+            setCpf(data.cpf)
+            setBirth(data.birth_date)
+            setFormation(data.formation)
         } catch {
-            history.push('/add-class/')
+            history.push('/add-teacher/')
         }
     },[history])
 
 
     React.useEffect(() => {
-        
-        populateClassCategorie();
 
         if(id){
             populateForm(id)
@@ -58,47 +81,92 @@ export default function AddClass() {
         let response;
         try{
 
-            if(code.length === 0 || lotacao.length === 0){
-                toast.warn("Preencha os campos corretamente")
-                return
-            }
-            response = await api.put(`/school-class/${id}`, {
-                class_code: code,
-                class_categorie: ensino,
-                max_students: Number(lotacao),
-                status,
-                institute: "7292c035-923b-44dc-9b4d-8803fad202af"
+            response = await api.put(`/teacher/${id}`, {
+                name,
+                sex,
+                father_name,
+                mother_name,
+                naturalness,
+                nationality,
+                birth_date,
+                formation,
+                address_street,
+                address_number: Number(address_number),
+                address_district,
+                address_complement,
+                address_cep,
+                address_city,
+                address_state,
+                phone_number,
+                email,
+                rg,
+                cpf,
+                institute: "1dd26546-67cb-47f2-a490-e20142f3504f"
             })
 
-            if(response.status === 200)toast.success('Turma Atualizada!')
+            if(response.status === 200){
+                toast.success('Professor Atualizado!', {autoClose: 2000}) 
+                history.push('/search-teacher')
+            }        
+
         } catch(error){
-            toast.error('Erro! Turma não atualizada')
+            toast.error(error.message)
         }
     }
 
     async function handleSubmit(e){
         e.preventDefault()
 
-        if(code.length === 0 || lotacao.length === 0){
-            toast.warn("Preencha os campos corretamente")
-            return
-        }
-
         let response
         try {
             setLoading(true)
-            response = await api.post('/school-class', {
-                class_code: code,
-                class_categorie: ensino,
-                max_students: Number(lotacao),
-                status,
-                institute: "7292c035-923b-44dc-9b4d-8803fad202af"
+            response = await api.post('/teacher', {
+                name,
+                sex,
+                father_name,
+                mother_name,
+                naturalness,
+                nationality,
+                birth_date,
+                formation,
+                address_street,
+                address_number: Number(address_number),
+                address_district,
+                address_complement,
+                address_cep,
+                address_city,
+                address_state,
+                phone_number,
+                email,
+                rg,
+                cpf,
+                institute: "1dd26546-67cb-47f2-a490-e20142f3504f"
             })
 
-            if(response.status === 201)toast.success('Turma Criada!')
+            if(response.status === 201){
+                toast.success('Professor Cadastrado')
+                setName('')
+                setFather('')
+                setMother('')
+                setNatural('')
+                setNationality('')
+                setAdress('')
+                setAdressD('')
+                setAdressC('')
+                setAdressCEP('')
+                setCity('')
+                setState('')
+                setPhone('')
+                setEmail('')
+                setRg('')
+                setCpf('')
+                setBirth('')
+                setFormation('')
+            }
             
-        } catch (error) {
-            toast.error('Erro! Turma não criada')
+            
+        } catch (Error) {
+            toast.error(Error.message)
         } finally{
             setLoading(false)
         }
@@ -117,104 +185,118 @@ export default function AddClass() {
                     <img className={style.perfil} src={perfil} alt={"Foto do Professor"}/>
 
                     
-                    <form className={style.form} onSubmit={id ? handleUpdate : handleSubmit} >
+                    <form className={style.form} onSubmit={ id ? handleUpdate : handleSubmit} >
                         <fieldset className={style.name}>
                             <label>Nome completo:</label>
-                            <input type="text" />
+                            <input value={name} type="text" onChange={({target}) => setName(target.value)} />
                         </fieldset>
                         
                         <fieldset>
                             <label>Sexo:</label>
-                            <select>
-                                <option value={true}>Masculino</option>
-                                <option value={false}>Feminino</option>
-                                <option value={false}>Feminino</option>
+                            <select value={sex} onChange={({target}) => setSex(target.value)} >
+                                <option value={'M'}>Masculino</option>
+                                <option value={'F'}>Feminino</option>
                             </select>
                         </fieldset>
 
                         <fieldset>
                             <label>Estado Civil:</label>
-                            <select>
-                                <option value={true}>Solteiro</option>
-                                <option value={false}>Casado</option>
-                                <option value={false}>Em união Estável</option>
+                            <select value={marital_status} onChange={({target}) => setMarital(target.value)}>
+                                <option value={'Solteiro'}>Solteiro</option>
+                                <option value={'Casado'}>Casado</option>
+                                <option value={'Em união Estável'}>Em união Estável</option>
                             </select>
                         </fieldset>
 
                         <fieldset>
                             <label>Nome do pai:</label>
-                            <input type="text" />
+                            <input value={father_name} onChange={({target}) => setFather(target.value)} type="text" />
                         </fieldset>
 
                         <fieldset>
                             <label>Nome da mãe:</label>
-                            <input type="text" />
+                            <input value={mother_name} onChange={({target}) => setMother(target.value)} type="text" />
                         </fieldset>
 
                         <fieldset>
                             <label>Naturalidade:</label>
-                            <input type="text" />
+                            <input value={naturalness} onChange={({target}) => setNatural(target.value)} type="text" />
                         </fieldset>
 
                         <fieldset>
                             <label>Nacionalidade:</label>
-                            <input type="text" />
+                            <input value={nationality} onChange={({target}) => setNationality(target.value)} type="text" />
+                        </fieldset>
+
+                        <fieldset>
+                            <label>Data de nascimento:</label>
+                            <input value={birth_date} onChange={({target}) => setBirth(target.value)} type="date" />
+                        </fieldset>
+
+                        <fieldset>
+                            <label>Formação:</label>
+                            <input value={formation} onChange={({target}) => setFormation(target.value)} type="text" />
                         </fieldset>
                         
                         <h2 className={style.subtitle}>Endereço:</h2>
 
                         <fieldset className={style.street}>
                             <label>Longradouro:</label>
-                            <input type="text" />
+                            <input value={address_street} onChange={({target}) => setAdress(target.value)} type="text" />
                         </fieldset>
 
                         <fieldset className={style.number}>
                             <label>Nº:</label>
-                            <input type="text" />
+                            <input value={address_number} onChange={({target}) => setAdressN(target.value)} type="text" />
                         </fieldset>
 
                         <fieldset>
                             <label>Bairro:</label>
-                            <input type="text" />
+                            <input value={address_district} onChange={({target}) => setAdressD(target.value)} type="text" />
                         </fieldset>
 
                         <fieldset>
                             <label>Complemento:</label>
-                            <input type="text" />
+                            <input value={address_complement} onChange={({target}) => setAdressC(target.value)} type="text" />
                         </fieldset>
 
                         <fieldset>
                             <label>CEP:</label>
-                            <input type="text" />
+                            <input value={address_cep} onChange={({target}) => setAdressCEP(target.value)} type="text" />
                         </fieldset>
 
                         <fieldset>
                             <label>Cidade:</label>
-                            <input type="text" />
+                            <input value={address_city} onChange={({target}) => setCity(target.value)} type="text" />
+                        </fieldset>
+
+                        <fieldset>
+                            <label>Estado:</label>
+                            <input value={address_state} onChange={({target}) => setState(target.value)} type="text" />
                         </fieldset>
                         
                         <h2 className={style.subtitle}>Contato:</h2>
 
                         <fieldset>
                             <label>Celular:</label>
-                            <input type="text" />
+                            <input value={phone_number} onChange={({target}) => setPhone(target.value)} type="text" />
                         </fieldset>
 
                         <fieldset>
                             <label>E-MAIL:</label>
-                            <input type="email" />
+                            <input value={email} onChange={({target}) => setEmail(target.value)} type="email" />
                         </fieldset>
 
                         <h2 className={style.subtitle}>Documentos:</h2>
 
                         <fieldset>
                             <label>RG (Identidade):</label>
-                            <input type="text" />
+                            <input value={rg} onChange={({target}) => setRg(target.value)} type="text" />
                         </fieldset>
 
                         <fieldset>
                             <label>CPF:</label>
-                            <input type="text" />
+                            <input value={cpf} onChange={({target}) => setCpf(target.value)} type="text" />
                         </fieldset>
 
 

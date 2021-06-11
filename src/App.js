@@ -10,9 +10,11 @@ import SearchStudent from './components/Admin/SearchStudent';
 import SearchTeacher from './components/Admin/SearchTeacher';
 import AddStudent from './components/Admin/addStudent';
 import AddTeacher from './components/Admin/addTeacher';
+import SearchUniqueTeacher from './components/Admin/SearchUniqueTeacher'
+import SearchUniqueStudent from './components/Admin/SearchUniqueStudent'
+
+
 function App() {
-
-
   return (
     <>
       <ToastContainer />
@@ -26,11 +28,13 @@ function App() {
           <Route path="/add-class/:id?" component={AddClass} />
           <Route path="/search-class/:id" component={SearchClassUnique}/>
 
-          <Route path="/search-student" component={SearchStudent} />
+          <Route exact path="/search-student" component={SearchStudent} />
+          <Route path="/search-student/:id" component={SearchUniqueStudent} />
           <Route path="/add-student/:id?" component={AddStudent} />
 
           <Route exact path="/search-teacher" component={SearchTeacher} />
           <Route path="/add-teacher/:id?" component={AddTeacher} />
+          <Route path="/search-teacher/:id" component={SearchUniqueTeacher}/>
         </Switch>
       </BrowserRouter>
     </>

@@ -1,0 +1,109 @@
+a {
+    text-decoration: none;
+}
+
+.ContainerHeaderBG{
+    background: #2E3E51;
+}
+
+.ContainerHeader{
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 15px 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.LogoHeader{
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*Icones de Escolha*/
+.containerMain{
+    width: 100%;
+    height: auto;
+    background-color: #243447;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.containerDiv{
+    max-width: 50%;
+    margin: 5%;
+    background-color: #2E3E51;
+    border-radius: 10px;
+    display: flex;
+    box-shadow: 1px 1px 5px rgba(0,0,0, 0.5);
+    padding: 3%;
+    flex-wrap: wrap;
+}
+
+.title{
+    width: 100%;
+    margin-bottom: 25px;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    font-size: 36px;
+}
+
+.form{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.form input{
+    width: 60%;
+    display: block;
+    padding: 5px;
+    font-size: 16px;
+    font-family: 'Raleway', sans-serif;
+    height: 36px;
+    border-radius: 5px;
+    border: 0;
+    color: #243447;
+    font-weight: bold;
+}
+
+.form label{
+    width: 60%;
+    display: flex;
+    flex-wrap: wrap;
+    color: #fff;
+    font-weight: bolder;
+    font-size: 18px;
+    margin: 15px 0;
+    font-family: 'Raleway', sans-serif;
+}
+
+.submit{
+    display: flex;
+    flex-wrap: wrap;
+    width: 30%;
+
+    box-shadow: 1px 1px 5px rgba(0,0,0, 0.5);
+    background-color: #005CC9;
+    color: #fff;
+    font-family: 'Raleway', sans-serif;
+    border: none;
+    padding: 15px 25px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submit:disabled{
+    opacity: 0.5;
+    cursor: wait;
+}

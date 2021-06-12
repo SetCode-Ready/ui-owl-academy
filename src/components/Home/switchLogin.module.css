@@ -1,0 +1,91 @@
+/* Header */
+
+a {
+    text-decoration: none;
+}
+
+.ContainerHeaderBG{
+    background: #2E3E51;
+}
+
+.ContainerHeader{
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 15px 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.LogoHeader{
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*Icones de Escolha*/
+
+.Content h1{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    color: #ffffff;
+    margin: 2% 0 0 0;
+    font-size: 32px;
+}
+
+.Content ul{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 530px;
+}
+
+.Content ul li{
+    margin: 1% 2% 2% 2%;
+    width: 20%;
+    min-width: 300px;
+    height: 60%;
+    box-shadow: 1px 1px 5px rgba(0,0,0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+}
+
+.Content a{
+    padding: 23%;
+}
+
+.Content ul li:hover{
+    background-color: #005CC9;
+}
+
+.Content p{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: #ffffff;
+    padding: 10px;
+    font-size: 2em;
+}
+
+.Content ul li picture{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.Content ul li picture img{
+    width: 70%;
+}

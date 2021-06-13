@@ -1,5 +1,6 @@
 import React from 'react'
 import {ReactComponent as Logo} from '../../Assets/Owl-HEAD.svg'
+import wave from  '../../Assets/Wave.svg'
 import style from './login.module.css'
 
 export default function Home() {
@@ -24,7 +25,6 @@ export default function Home() {
                         <button className={style.submit} type="submit"><p>entrar</p></button>
                     </form>
                 </div>
-                
             </section>
             
         </>

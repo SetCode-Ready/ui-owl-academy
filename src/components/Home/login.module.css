@@ -14,7 +14,6 @@ a {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    
 }
 
 .LogoHeader{
@@ -33,10 +32,12 @@ a {
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+    background: url("../../Assets/Wave.svg") no-repeat center bottom;
+    background-size: 110%;
 }
 
 .containerDiv{
-    max-width: 50%;
+    max-width: 30%;
     margin: 5%;
     background-color: #2E3E51;
     border-radius: 10px;
@@ -58,7 +59,7 @@ a {
 
 .form{
     display: flex;
-    width: 50%;
+    width: 90%;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;

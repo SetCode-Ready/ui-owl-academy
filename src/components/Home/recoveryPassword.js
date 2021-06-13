@@ -1,6 +1,7 @@
 import React from 'react'
 import {ReactComponent as Logo} from '../../Assets/Owl-HEAD.svg'
-import style from './login.module.css'
+import Key from '../../Assets/carbon_password.svg' 
+import style from './recoveryPassword.module.css'
 
 export default function Home() {
     return (
@@ -15,14 +16,13 @@ export default function Home() {
 
             <section className={style.containerMain}>
                 <div className={style.containerDiv}>
-                    <h1 className={style.title}>Fazer Login</h1>
+                    <h1 className={style.title}>Recuperar senha</h1>
+                    <img src={Key} alt="Foto de uma chave"/>
+                    <p className={style.info}>Ao clicar em enviar, você receberá um email de confirmação para alterar sua senha.</p>
                     <form className={style.form}>
                         <label>Email:</label>
                         <input/>
-                        <label>Senha:</label>
-                        <input/>
-                        <a href="/recovery-password">Esqueceu sua senha?</a>
-                        <button className={style.submit} type="submit"><p>entrar</p></button>
+                        <button className={style.submit} type="submit"><p>Enviar</p></button>
                     </form>
                 </div>
             </section>

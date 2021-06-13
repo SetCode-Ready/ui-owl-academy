@@ -44,6 +44,7 @@ a {
     box-shadow: 1px 1px 5px rgba(0,0,0, 0.5);
     padding: 3%;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .title{
@@ -57,14 +58,16 @@ a {
 
 .form{
     display: flex;
+    width: 50%;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 }
 
 .form input{
-    width: 60%;
-    display: block;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
     padding: 5px;
     font-size: 16px;
     font-family: 'Raleway', sans-serif;
@@ -73,10 +76,11 @@ a {
     border: 0;
     color: #243447;
     font-weight: bold;
+    
 }
 
 .form label{
-    width: 60%;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     color: #fff;
@@ -89,8 +93,10 @@ a {
 .submit{
     display: flex;
     flex-wrap: wrap;
-    width: 30%;
-
+    margin-top: 10%;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
     box-shadow: 1px 1px 5px rgba(0,0,0, 0.5);
     background-color: #005CC9;
     color: #fff;
@@ -101,9 +107,4 @@ a {
     font-weight: bold;
     border-radius: 5px;
     cursor: pointer;
-}
-
-.submit:disabled{
-    opacity: 0.5;
-    cursor: wait;
 }

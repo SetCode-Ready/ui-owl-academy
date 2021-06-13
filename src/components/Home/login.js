@@ -21,7 +21,7 @@ export default function Home() {
                         <input/>
                         <label>Senha:</label>
                         <input/>
-                        <button className={style.submit} type="submit">Entrar</button>
+                        <button className={style.submit} type="submit"><p>entrar</p></button>
                     </form>
                 </div>
                 

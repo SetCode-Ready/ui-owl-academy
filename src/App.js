@@ -26,8 +26,8 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route path="/admin" component={DashboardAdmin}/>
           <Route path="/switch-login/" component={switchLogin}/>
-          <Route path="/login-student/" component={Login}/>
-          <Route path="/login-teacher/" component={Login}/>
+          <Route path="/login/student/" component={Login}/>
+          <Route path="/login/teacher/" component={Login}/>
           
           <Route exact path="/search-class" component={SearchClass}/>
           <Route path="/add-class/:id?" component={AddClass} />

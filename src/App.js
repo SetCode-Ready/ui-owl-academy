@@ -14,6 +14,8 @@ import AddStudent from './components/Admin/addStudent';
 import AddTeacher from './components/Admin/addTeacher';
 import SearchUniqueTeacher from './components/Admin/SearchUniqueTeacher'
 import SearchUniqueStudent from './components/Admin/SearchUniqueStudent'
+import DashboardTeacher from './components/Teacher/DashboardTeacher';
+import CreateRoll from './components/Teacher/CreateRoll';
 
 
 function App() {
@@ -41,6 +43,8 @@ function App() {
           <Route path="/add-teacher/:id?" component={AddTeacher} />
           <Route path="/search-teacher/:id" component={SearchUniqueTeacher}/>
 
+          <Route exact path="/teacher/dashboard" component={DashboardTeacher} />
+          <Route exact path="/teacher/create-roll" component={CreateRoll} />
 
         </Switch>
       </BrowserRouter>

@@ -3,6 +3,7 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import Home from './components/Home/Home'
 import switchLogin from './components/Home/switchLogin'
 import Login from './components/Home/login'
+import Recovery from './components/Home/recoveryPassword'
 import DashboardAdmin from './components/Admin/DashboardAdmin';
 import AddClass from './components/Admin/AddClass';
 import SearchClass from './components/Admin/SearchClass'
@@ -28,8 +29,9 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route path="/admin" component={DashboardAdmin}/>
           <Route path="/switch-login/" component={switchLogin}/>
-          <Route path="/login-student/" component={Login}/>
-          <Route path="/login-teacher/" component={Login}/>
+          <Route path="/login/student/" component={Login}/>
+          <Route path="/login/teacher/" component={Login}/>
+          <Route path="/recovery-password" component={Recovery}/>
           
           <Route exact path="/search-class" component={SearchClass}/>
           <Route path="/add-class/:id?" component={AddClass} />

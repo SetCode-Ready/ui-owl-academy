@@ -1,0 +1,122 @@
+.ContainerMain{
+    margin: 5% auto;
+    width: 95%;
+    min-height: 30%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.ContainerContent{
+    width: 68%;
+    min-height: 30%;
+    height: auto;
+}
+
+.ContainerContentAside{
+    width: 30%;
+    height: 100;
+    background-color: #2E3E51;
+    box-shadow: 1px 1px 5px rgba(0,0,0, 0.5);
+    border-radius: 15px;
+    padding-bottom: -5%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow-y: auto;
+    flex-wrap: wrap;
+}
+
+.ContainerContentAside h1{
+    padding: 4%;
+    text-align: center;
+    color: white;
+}
+
+.ContainerContentAside h4{
+    color: rgba(242, 242, 242, 0.8);
+}
+
+.AsideContent{
+    color: white;
+    margin: 1% auto;
+    width: 90%;
+    height: 10vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.ContainerInfo{
+    border-radius: 15px;
+    width: 100%;
+    height: 30vh;
+    background-color: #2E3E51;
+    box-shadow: 1px 1px 5px rgba(0,0,0, 0.5);
+    display: flex;
+}
+
+.ContainerInfo img{
+    border-radius: 60px;
+}
+
+.InfoPhoto{
+    height: 100%;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Info{
+    margin: 3% auto;
+    width: 70%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    color: white;
+}
+
+.InfoBottom{
+    color: rgba(242, 242, 242, 0.8)
+}
+
+
+.ContainerActions{
+    margin-top: 2%;
+    width: 100%;
+    min-height: 30vh;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.Actions{
+    cursor: pointer;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 1% auto;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 1px 1px 5px rgba(0,0,0, 0.5);
+    width: 200px;
+    border-radius: 20px;
+    height: 30vh;
+    background-color: #2E3E51;
+    transition: 1s;
+}
+
+.Actions p{
+    margin-top: 2%;
+    text-align: center;
+    color: white;
+}
+
+.Actions:hover{
+    background-color: #005CC9;
+    transition: 1s;
+}

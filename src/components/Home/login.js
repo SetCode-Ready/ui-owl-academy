@@ -1,6 +1,5 @@
 import React from 'react'
 import {ReactComponent as Logo} from '../../Assets/Owl-HEAD.svg'
-import wave from  '../../Assets/Wave.svg'
 import style from './login.module.css'
 
 export default function Home() {

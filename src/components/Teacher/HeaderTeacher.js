@@ -12,7 +12,7 @@ export default function HeaderTeacher() {
 
             <section className={style.ContainerHeaderAdm}>
 
-                <a href="/admin" className={style.LogoHeaderAdm}>
+                <a href="/teacher/dashboard" className={style.LogoHeaderAdm}>
                     <Logo/>
                 </a>
 
@@ -20,7 +20,7 @@ export default function HeaderTeacher() {
 
                     <ul>
                         <li>
-                            <a href="/admin" className={style.iconAdm}>
+                            <a href="/teacher/dashboard" className={style.iconAdm}>
                                 <IconContext.Provider value={{color: 'white', size: '1.5rem', style:{flexGrow: 2}}}>
                                     <FiBell/>
                                 </IconContext.Provider>
@@ -29,7 +29,7 @@ export default function HeaderTeacher() {
 
                             
                         <li>
-                            <a href="/admin">
+                            <a href="/teacher/dashboard">
                                 <div className={style.ContainerLoginAdm}>
                                     <img src={perfil} alt="Minha Figura"/>
                                     <p>Cícero</p>

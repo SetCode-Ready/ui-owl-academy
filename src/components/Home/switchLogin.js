@@ -3,15 +3,16 @@ import {ReactComponent as Logo} from '../../Assets/Owl-HEAD.svg'
 import CadasPro from '../../Assets/CadastrarProfessor.svg'
 import CadasEst from '../../Assets/CadastrarEstudante.svg'
 import style from './switchLogin.module.css'
+import {Link} from 'react-router-dom'
 
 export default function Home() {
     return (
         <>
             <header className={style.ContainerHeaderBG}>
                 <section className={style.ContainerHeader}>
-                    <a href="/" className={style.LogoHeader}>
+                    <Link to="/" className={style.LogoHeader}>
                         <Logo/>
-                    </a>
+                    </Link>
                 </section>
             </header>
 
@@ -19,20 +20,20 @@ export default function Home() {
                 <ul>
                     <h1>Entrar como:</h1>
                     <li className={style.Content}>
-                        <a href="/login">
+                        <Link to="/login/student">
                             <picture>
                                 <img src={CadasEst} alt={"Aluno"}/>
                             </picture>
                             <p>Estudante</p>
-                        </a>
+                        </Link>
                     </li>
                     <li className={style.Content}>
-                        <a href="/login">
+                        <Link to="/login/teacher">
                             <picture>
                                 <img src={CadasPro} alt={"Professor"}/>
                             </picture>
                             <p>Professor</p>
-                        </a>
+                        </Link>
                     </li>
                 </ul>
             </section>

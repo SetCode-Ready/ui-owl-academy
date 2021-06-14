@@ -1,6 +1,7 @@
 import React from 'react'
 import style from './header.module.css'
 import {ReactComponent as Logo} from '../../Assets/Owl-HEAD.svg'
+import {Link} from 'react-router-dom'
 
 export default function Header() {
     return (
@@ -16,7 +17,7 @@ export default function Header() {
                     <ul>
                         <li><a href="/">Home</a></li>
                         <li><a href="/">Sobre</a></li>
-                        <li><a href="/" className={style.buttonLogin}>Login</a></li>
+                        <li><Link to="/switch-login/" className={style.buttonLogin}>Login</Link></li>
                     </ul>
                 </nav>
                 </div>

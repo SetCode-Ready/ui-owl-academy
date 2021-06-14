@@ -2,15 +2,16 @@ import React from 'react'
 import {ReactComponent as Logo} from '../../Assets/Owl-HEAD.svg'
 import Key from '../../Assets/carbon_password.svg' 
 import style from './recoveryPassword.module.css'
+import { NavLink } from 'react-router-dom'
 
 export default function Home() {
     return (
         <>
             <header className={style.ContainerHeaderBG}>
                 <section className={style.ContainerHeader}>
-                    <a href="/" className={style.LogoHeader}>
+                    <NavLink to="/" className={style.LogoHeader}>
                         <Logo/>
-                    </a>
+                    </NavLink>
                 </section>
             </header>
 

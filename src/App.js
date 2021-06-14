@@ -30,8 +30,8 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route path="/admin" component={DashboardAdmin}/>
           <Route path="/switch-login/" component={switchLogin}/>
-          <Route path="/login/student/" component={Login}/>
-          <Route path="/login/teacher/" component={Login}/>
+          <Route path="/login/student" component={Login}/>
+          <Route path="/login/teacher" component={Login}/>
           <Route path="/recovery-password" component={Recovery}/>
           
           <Route exact path="/search-class" component={SearchClass}/>

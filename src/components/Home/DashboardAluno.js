@@ -32,7 +32,7 @@ export default function DashboardAluno() {
                             <img src={Photo} alt="Foto de perfil do aluno" width="128px" />
                         </div>
                         <div className={style.Info}>
-                            <h1>Bom dia, Antonio!</h1>
+                            <h1>Olá, Cícero!</h1>
                             <div className={style.InfoBottom}>
                                 <h3>Tec. Análise e Desenvolvimento de Sistemas</h3>
                                 <h3>Instituto Federal de Educação, Ciência e Tecnologia do Piauí</h3>

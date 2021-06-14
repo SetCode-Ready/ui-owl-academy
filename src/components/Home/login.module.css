@@ -25,6 +25,7 @@ a {
 
 /*Icones de Escolha*/
 .containerMain{
+    height: 100vh;
     width: 100%;
     height: auto;
     background-color: #243447;
@@ -39,7 +40,6 @@ a {
 .containerDiv{
     max-width: 30%;
     margin: 6%;
-    height: 100vh;
     background-color: #2E3E51;
     border-radius: 10px;
     display: flex;

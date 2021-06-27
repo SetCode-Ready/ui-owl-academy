@@ -10,6 +10,7 @@ import { ReactComponent as Solicitar } from '../../Assets/Solicitar.svg'
 import { ReactComponent as Senha } from '../../Assets/EditarSenha.svg'
 import { ReactComponent as FAQ } from '../../Assets/FAQ.svg'
 import Photo from '../../Assets/perfil.jpg'
+import { Link } from 'react-router-dom'
 
 export default function DashboardAluno() {
 
@@ -60,10 +61,10 @@ export default function DashboardAluno() {
                             <Matriz/>
                             <p>Matriz Curricular</p>
                         </div>
-                        <div className={style.Actions}>
+                        <Link to="/student/documents" className={style.Actions}>
                             <Solicitar/>
                             <p>Solicitação de Documentos</p>
-                        </div>
+                        </Link>
                         <div className={style.Actions}>
                             <Senha/>
                             <p>Alteração de Senha</p>

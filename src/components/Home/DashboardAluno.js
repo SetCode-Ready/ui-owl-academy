@@ -1,6 +1,6 @@
 import React from 'react'
 import style from './dashboardAluno.module.css'
-import Header from '../Admin/HeaderAdmin'
+import Header from './HeaderAluno'
 import { ReactComponent as Perfil } from '../../Assets/EditarPerfil.svg'
 import { ReactComponent as Horarios } from '../../Assets/Horários.svg'
 import { ReactComponent as Boletim } from '../../Assets/Boletim.svg'
@@ -9,19 +9,32 @@ import { ReactComponent as Matriz } from '../../Assets/Matriz.svg'
 import { ReactComponent as Solicitar } from '../../Assets/Solicitar.svg'
 import { ReactComponent as Senha } from '../../Assets/EditarSenha.svg'
 import { ReactComponent as FAQ } from '../../Assets/FAQ.svg'
-import Photo from '../../Assets/perfil.jpg'
 import { Link } from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
+import perfil from '../../Assets/perfil.jpg'
+import { User } from '../UserContext'
 
 export default function DashboardAluno() {
 
-    const [data, setData] = React.useState([
-        {disc:"Estrutura de dados II", pro: "Otílio Paulo"},
-        {disc:"Banco de dados II", pro: "Thiago Elias"},
-        {disc:"Engenharia de Software II", pro: "Hélcio de Abreu"},
-        {disc:"Sistemas Operacionais", pro: "Prof. Ricardo Martins"},
-        {disc:"Programação para Internet I", pro: "Ely Miranda"},
-        {disc:"Projeto Integrador", pro: "Ely Miranda"},
+    const {user, isAuth} = User()
+    const history = useHistory()
+
+    const [disciplinas, setDisciplinas] = React.useState([
+        {id:1, disc:"Estrutura de dados II", pro: "Otílio Paulo"},
+        {id:2, disc:"Banco de dados II", pro: "Thiago Elias"},
+        {id:3, disc:"Engenharia de Software II", pro: "Hélcio de Abreu"},
+        {id:4, disc:"Sistemas Operacionais", pro: "Prof. Ricardo Martins"},
+        {id:5, disc:"Programação para Internet I", pro: "Ely Miranda"},
+        {id:6, disc:"Projeto Integrador", pro: "Ely Miranda"},
     ])
+
+    React.useEffect(() => {
+        const logged = isAuth()
+
+        if(!logged){
+            history.push('/')
+        }
+    }, [history, isAuth])
 
     return (
         <>
@@ -30,10 +43,10 @@ export default function DashboardAluno() {
                 <div className={style.ContainerContent}>
                     <div className={style.ContainerInfo}>
                         <div className={style.InfoPhoto}>
-                            <img src={Photo} alt="Foto de perfil do aluno" width="128px" />
+                            <img src={perfil} alt="Foto de perfil do aluno" width="128px" />
                         </div>
                         <div className={style.Info}>
-                            <h1>Olá, Cícero!</h1>
+                            <h1>{user && `Olá, ${user.name}!`}</h1>
                             <div className={style.InfoBottom}>
                                 <h3>Tec. Análise e Desenvolvimento de Sistemas</h3>
                                 <h3>Instituto Federal de Educação, Ciência e Tecnologia do Piauí</h3>
@@ -77,8 +90,8 @@ export default function DashboardAluno() {
                 </div>
                 <div className={style.ContainerContentAside}>
                     <h1>Disciplinas</h1>
-                    {data && data.map(item => (
-                        <div className={style.AsideContent}>
+                    {disciplinas&& disciplinas.map(item => (
+                        <div key={disciplinas.id} className={style.AsideContent}>
                             <h2>{item.disc}</h2>
                             <h4>Prof. {item.pro}</h4>
                         </div>

@@ -1,33 +1,46 @@
 import React from 'react'
-import { NavLink, useHistory} from 'react-router-dom'
+import {NavLink, useHistory} from 'react-router-dom'
 import { toast } from 'react-toastify'
-import {ReactComponent as Logo} from '../../Assets/Owl-HEAD.svg'
 import style from './login.module.css'
+import {UserContext} from '../UserContext.js'
+import {ReactComponent as Logo} from '../../Assets/Owl-HEAD.svg'
 
 export default function Home() {
-
-    const history = useHistory()
-
     const [email, setEmail] = React.useState('')
     const [password, setPassword] = React.useState('')
 
-    function handleSubmit(e){
+    const {userLogin, loading} = React.useContext(UserContext)
+    const history = useHistory()
+
+    async function handleSubmit(e){
         e.preventDefault()
 
         const href = window.location.pathname
 
-        let params = href.split('/')
+        const href_split = href.split('/')
+        
+        let account_role;
 
-        console.log(params)
-
-        if(email === 'cicero@email.com' && password === 'admin'){
-            if(params[2] === "teacher"){
-                history.push("/teacher/dashboard")
+        if(href_split[2] === 'student'){
+            account_role = 3
+        }else {
+            account_role = 2
+        }
+        try {
+            if(email.length > 0 && password.length > 0){
+                const response = await userLogin(email, password, account_role)
+                if(response.status === 200){
+                    if(account_role === 3){
+                        history.push('/student/dashboard')
+                    } else {
+                        history.push('/teacher/dashboard')
+                    }
+                }
             } else {
-                history.push("/student/dashboard")
+                throw new Error('Peencha todos os campos!')
             }
-        } else{
-            toast.error("Usuário e/ou senha incorretos")
+        } catch (error) {
+            toast.error(error.message)
         }
     }
 
@@ -51,7 +64,10 @@ export default function Home() {
                         <label>Senha:</label>
                         <input value={password} type="password" onChange={({target}) => setPassword(target.value)}/>
                         <NavLink to="/recovery-password">Esqueceu sua senha?</NavLink>
-                        <button className={style.submit} type="submit"><p>entrar</p></button>
+                        {loading ? 
+                        <button disabled className={style.submit} type="submit"><p>entrar</p></button>
+                        :
+                        <button className={style.submit} type="submit"><p>entrar</p></button>}
                     </form>
                 </div>
             </section>

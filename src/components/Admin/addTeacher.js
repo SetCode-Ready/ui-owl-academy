@@ -70,8 +70,7 @@ export default function AddClass() {
 
             response = await api.get(`/teacher/${id}`);
             const { data } = response;
-        
-            console.log(data)
+
             setName(data.name)
             setSex(data.sex)
             setFather(data.father_name)

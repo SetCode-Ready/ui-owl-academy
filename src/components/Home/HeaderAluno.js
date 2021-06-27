@@ -1,32 +1,23 @@
 import React from 'react'
-import style from './HeaderTeacher.module.css'
+import style from './headerAluno.module.css'
 import perfil from '../../Assets/perfil.jpg'
 import {ReactComponent as Logo} from '../../Assets/Owl-HEAD.svg'
 import {FiBell} from 'react-icons/fi'
 import {FiLogOut} from 'react-icons/fi'
 import {IconContext} from 'react-icons'
 import {Link} from 'react-router-dom'
+import { User } from '../UserContext'
 
-export default function HeaderTeacher() {
+export default function HeaderAdmin() {
 
-    const [user, setUser] = React.useState()
-
-    React.useEffect(() => {
-        const data = JSON.parse(window.localStorage.getItem('user'))
-        setUser(data)
-    }, [])
-
-    function handleLogout(){
-        window.localStorage.removeItem('token')
-        window.localStorage.removeItem('user')
-    }
+    const {user, userLogout} = User()
 
     return (
         <header className={style.ContainerHeaderBG}>
 
             <section className={style.ContainerHeaderAdm}>
 
-                <Link to="/teacher/dashboard" className={style.LogoHeaderAdm}>
+                <Link to="/student/dashboard" className={style.LogoHeaderAdm}>
                     <Logo/>
                 </Link>
 
@@ -34,25 +25,25 @@ export default function HeaderTeacher() {
 
                     <ul>
                         <li>
-                            <a href="/teacher/dashboard" className={style.iconAdm}>
+                            <Link to="/admin" className={style.iconAdm}>
                                 <IconContext.Provider value={{color: 'white', size: '1.5rem', style:{flexGrow: 2}}}>
                                     <FiBell/>
                                 </IconContext.Provider>
-                            </a>
+                            </Link>
                         </li>
 
                             
                         <li>
-                            <a href="/teacher/dashboard">
+                            <Link to="/admin">
                                 <div className={style.ContainerLoginAdm}>
                                     <img src={perfil} alt="Minha Figura"/>
                                     <p>{user && user.name}</p>
                                 </div>
-                            </a>
+                            </Link>
                         </li>
 
                         <li>
-                            <Link onClick={handleLogout}to="/" className={style.iconAdm}>
+                            <Link onClick={userLogout} to="/" className={style.iconAdm}>
                                 <IconContext.Provider value={{color: 'white', size: '1.5rem', style:{flexGrow: 1}}}>
                                     <FiLogOut/>
                                 </IconContext.Provider>

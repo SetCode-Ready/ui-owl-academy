@@ -1,0 +1,94 @@
+ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+a {
+    text-decoration: none;
+}
+.ContainerHeaderAdmBG{
+    background: #2E3E51;
+}
+
+.ContainerHeaderAdm{
+    width: 100%;
+    background: #2E3E51;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.LogoHeaderAdm{
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ContainerUserAdm ul{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.ContainerUserAdm a{
+    color: #ffffff;
+    font-size: 1.25em;
+    display: flex;
+    padding: 0.75em;
+    font-weight: bold;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.iconAdm:hover{
+    background-color: #005CC9;
+    transition: 0.3s;
+}
+
+.ContainerLoginAdm{
+    font-weight: bold;
+    display: flex;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    padding: 7px;
+    border-radius: 10px;
+}
+
+.ContainerLoginAdm:hover{
+    color: #ffffff;
+    background-color: #005CC9;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.ContainerLoginAdm p{
+    display: block;
+    margin: auto;
+    padding: 10px;
+}
+
+.ContainerLoginAdm img{
+    display: block;
+    margin: auto;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    background: url('https://pt.org.br/wp-content/uploads/2021/05/lula-1-de-maio-2021-ricardostuckert-750x440.jpg') center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+@media(max-width: 425px){
+    .LogoHeaderAdm{
+        margin: 0 auto;
+    }
+    .ContainerLoginAdm p{
+        display: none;
+        transition: 0.3s;
+    }
+}
+

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; 
+import { Link, useHistory } from 'react-router-dom'; 
+import { User } from '../UserContext';
 
 import HeaderTeacher from './HeaderTeacher';
 import style from './DashboardTeacher.module.css';
@@ -10,6 +11,16 @@ import{ReactComponent as ListClass} from '../../Assets/ControledeTurma.svg'
 
 export default function DashboardTeacher() {
 
+  const {isAuth} = User()
+    const history = useHistory()
+
+  React.useEffect(() => {
+    const logged = isAuth()
+
+    if(!logged){
+        history.push('/')
+    }
+}, [history, isAuth])
 
   return (
     <>

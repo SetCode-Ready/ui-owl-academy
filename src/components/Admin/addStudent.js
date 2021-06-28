@@ -49,7 +49,7 @@ export default function AddClass() {
     const [nationality, setNationality] = React.useState('')
     const [birth_date, setBirth] = React.useState('')
     const [education_level, setEdu] = React.useState('')
-    const [address_street, setAdress] = React.useState('')
+    const [street, setStreet] = React.useState('')
     const [address_number, setAdressN] = React.useState('')
     const [address_district, setAdressD] = React.useState('')
     const [address_complement, setAdressC] = React.useState('')
@@ -88,7 +88,7 @@ export default function AddClass() {
             setMother(data.mother_name)
             setNatural(data.naturalness)
             setNationality(data.nationality)
-            setAdress(data.address_street)
+            setStreet(data.street)
             setAdressD(data.address_district)
             setAdressC(data.address_complement)
             setAdressCEP(data.address_cep)
@@ -131,7 +131,7 @@ export default function AddClass() {
                 naturalness,
                 nationality,
                 birth_date,
-                address_street,
+                street,
                 address_number,
                 address_district,
                 address_cep,
@@ -154,7 +154,7 @@ export default function AddClass() {
                 nationality,
                 birth_date,
                 education_level,
-                address_street,
+                street,
                 address_number: Number(address_number),
                 address_district,
                 address_complement,
@@ -194,7 +194,7 @@ export default function AddClass() {
                 naturalness,
                 nationality,
                 birth_date,
-                address_street,
+                street,
                 address_number,
                 address_district,
                 address_cep,
@@ -217,7 +217,7 @@ export default function AddClass() {
                 nationality,
                 birth_date,
                 education_level,
-                address_street,
+                street,
                 address_number: Number(address_number),
                 address_district,
                 address_complement,
@@ -241,7 +241,7 @@ export default function AddClass() {
                 setMother('')
                 setNatural('')
                 setNationality('')
-                setAdress('')
+                setStreet('')
                 setAdressD('')
                 setAdressC('')
                 setAdressCEP('')
@@ -343,7 +343,7 @@ export default function AddClass() {
 
                         <fieldset className={style.street}>
                             <label>Longradouro:</label>
-                            <input value={address_street} onChange={({target}) => setAdress(target.value)} type="text" />
+                            <input value={street} onChange={({target}) => setStreet(target.value)} type="text" />
                         </fieldset>
 
                         <fieldset className={style.number}>

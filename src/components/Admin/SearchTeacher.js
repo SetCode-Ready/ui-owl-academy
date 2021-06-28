@@ -32,6 +32,14 @@ export default function SearchTeacher() {
 
     }, [])
 
+    
+    const contentFilter = React.useMemo(() => {
+        if(content){
+            const busca = search.toLowerCase()
+            return content.filter( data => data.name.toLowerCase().includes(busca))
+        }
+    }, [content, search])
+
     return (
         <>
             <HeaderAdmin/>
@@ -43,7 +51,7 @@ export default function SearchTeacher() {
                     </div>
                     <div className={loading === true ? style.ContentLoading : style.ContentBody}>
                         <img src={loadingIMG} alt="loading" />
-                        {content && content.map(item => {
+                        {contentFilter && contentFilter.map(item => {
                             return(
                                 <Link to={`/search-teacher/${item.id}`} key={item.id} className={style.Class}>
                                     <p>{item.name}</p>

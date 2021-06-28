@@ -9,7 +9,7 @@ import loadingIMG from '../../Assets/loading.svg'
 
 export default function SearchTeacher() {
 
-    const [content, setContent] = React.useState();
+    const [content, setContent] = React.useState(false);
     const [loading, setLoading] = React.useState(true)
     const [search, setSearch] = React.useState('')
 
@@ -22,7 +22,7 @@ export default function SearchTeacher() {
                 setContent(response.data.reverse())
                 console.log(response)
             } catch (error) {
-                setContent(['Nenhuma turma encontrada, porfavor cadastre uma!'])
+                console.log(error)
             } finally{
                 setLoading(false)
             }
@@ -31,6 +31,13 @@ export default function SearchTeacher() {
         SearchAll()
 
     }, [])
+
+    let contentFilter = React.useMemo(() => {
+        if(content){
+            const busca = search.toLowerCase()
+            return content.filter( data => data.name.toLowerCase().includes(busca))
+        }
+    }, [content, search])
 
     return (
         <>
@@ -43,11 +50,11 @@ export default function SearchTeacher() {
                     </div>
                     <div className={loading === true ? style.ContentLoading : style.ContentBody}>
                         <img src={loadingIMG} alt="loading" />
-                        {content && content.map(item => {
+                        {contentFilter && contentFilter.map(item => {
                             return(
                                 <Link to={`/search-class/${item.id}`} key={item.created_at} className={style.Class}>
-                                    <p>{item.class_code}</p>
-                                    <p>{item.status}</p>
+                                    <p>{item.name}</p>
+                                    <p>{item.number_students}</p>
                                 </Link>
                             )
                         })}

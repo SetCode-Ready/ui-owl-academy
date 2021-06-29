@@ -39,7 +39,7 @@ export default function SearchClassUnique() {
       async function req(){
         try{
             const response = await api.get(`/teacher/${id}`)
-
+            console.log(response.data)
             if(response.status === 200) setContent(response.data)
         } catch{
             history.push('/search-teacher')
@@ -63,11 +63,10 @@ export default function SearchClassUnique() {
                       <img src={perfil} alt={"Foto do Professor"}/>
                     </li>
                     <li className={style.ContainerDetails}>
-                      {content && <p>Nome: {content.name}</p>}
-                      {content && <p>CPF: {content.cpf}</p>}
-                      {content && <p>Rua: {content.address_street}</p>}
-                      {content && <p>Telefone: {content.phone_number}</p>}
-                      {content && <p>Email: {content.email}</p>}
+                      {content && <p>Nome: {content.teacher.name}</p>}
+                      {content && <p>CPF: {content.teacher.cpf}</p>}
+                      {content && <p>Telefone: {content.teacher.phone_number}</p>}
+                      {content && <p>Email: {content.teacher.email}</p>}
                     </li>
                     <li className={style.edit} onClick={handleEdit}>
                       <img src={Editar} alt={"Botão de Editar"}/>

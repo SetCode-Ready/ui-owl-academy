@@ -15,9 +15,11 @@ import perfil from '../../Assets/perfil.jpg'
 import { User } from '../UserContext'
 
 export default function DashboardAluno() {
-
-    const {user, isAuth} = User()
+    
     const history = useHistory()
+    const {getUser, isAuth} = User()
+
+    const [user, setUser] = React.useState()
 
     const [disciplinas, setDisciplinas] = React.useState([
         {id:1, disc:"Estrutura de dados II", pro: "Otílio Paulo"},
@@ -27,15 +29,18 @@ export default function DashboardAluno() {
         {id:5, disc:"Programação para Internet I", pro: "Ely Miranda"},
         {id:6, disc:"Projeto Integrador", pro: "Ely Miranda"},
     ])
+    
 
     React.useEffect(() => {
+        setUser(getUser())
         const logged = isAuth()
-
+    
         if(!logged){
             history.push('/')
         }
-    }, [history, isAuth])
-
+        
+    }, [getUser, history, isAuth])
+    
     return (
         <>
             <Header/>

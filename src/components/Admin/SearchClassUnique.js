@@ -60,9 +60,9 @@ export default function SearchClassUnique() {
                       <img src={perfil} alt={"Foto da Turma"}/>
                     </li>
                     <li className={style.ContainerDetails}>
-                      {content && <p>Nome da Turma: {content.class_code}</p>}
-                      {content && <p>Máximo de alunos: {content.max_students}</p>}
-                      {content && <p>Status: {content.status ? 'Ativa': 'Inativa'}</p>}
+                      {content && <p>Nome da Turma: {content.schoolClass.name}</p>}
+                      {content && <p>Máximo de alunos: {content.schoolClass.number_students}</p>}
+                      {content && <p>Periodo: {content.schoolClass.period}</p>}
                     </li>
                     <li className={style.edit} onClick={handleEdit}>
                       <img src={Editar} alt={"Botão de Editar"}/>

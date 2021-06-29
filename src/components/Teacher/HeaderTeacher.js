@@ -6,15 +6,17 @@ import {FiBell} from 'react-icons/fi'
 import {FiLogOut} from 'react-icons/fi'
 import {IconContext} from 'react-icons'
 import {Link} from 'react-router-dom'
+import { User } from '../UserContext'
 
 export default function HeaderTeacher() {
+
+    const {getUser} = User()
 
     const [user, setUser] = React.useState()
 
     React.useEffect(() => {
-        const data = JSON.parse(window.localStorage.getItem('user'))
-        setUser(data)
-    }, [])
+        setUser(getUser())
+    }, [getUser])
 
     function handleLogout(){
         window.localStorage.removeItem('token')

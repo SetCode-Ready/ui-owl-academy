@@ -5,7 +5,6 @@ import api from '../config/api'
 export const UserContext = React.createContext()
 
 export function UserStorage({children}){
-    const [user, setUser] = React.useState()
     const [loading, setLoding] = React.useState()
     
     async function userLogin(email, password, ar){
@@ -41,17 +40,15 @@ export function UserStorage({children}){
         }
     }
 
-    React.useEffect(() => {
+    function getUser(){
         const storage = JSON.parse(window.localStorage.getItem('user'))
+        
+        return storage
+    }
 
-        if(storage){
-            setUser(storage)
-        }
-
-    }, [])
 
     return(
-        <UserContext.Provider value={{userLogin, userLogout, isAuth, user, loading}}>
+        <UserContext.Provider value={{userLogin, userLogout, isAuth, getUser, loading}}>
             {children}
         </UserContext.Provider>
     )

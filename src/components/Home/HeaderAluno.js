@@ -10,7 +10,13 @@ import { User } from '../UserContext'
 
 export default function HeaderAdmin() {
 
-    const {user, userLogout} = User()
+    const {userLogout, getUser} = User()
+
+    const [user, setUser] = React.useState()
+
+    React.useEffect(() => {
+        setUser(getUser())
+    }, [getUser])
 
     return (
         <header className={style.ContainerHeaderBG}>
@@ -25,7 +31,7 @@ export default function HeaderAdmin() {
 
                     <ul>
                         <li>
-                            <Link to="/admin" className={style.iconAdm}>
+                            <Link to="/student/dashboard" className={style.iconAdm}>
                                 <IconContext.Provider value={{color: 'white', size: '1.5rem', style:{flexGrow: 2}}}>
                                     <FiBell/>
                                 </IconContext.Provider>
@@ -34,7 +40,7 @@ export default function HeaderAdmin() {
 
                             
                         <li>
-                            <Link to="/admin">
+                            <Link to="/student/dashboard">
                                 <div className={style.ContainerLoginAdm}>
                                     <img src={perfil} alt="Minha Figura"/>
                                     <p>{user && user.name}</p>

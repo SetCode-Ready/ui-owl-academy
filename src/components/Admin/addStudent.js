@@ -25,14 +25,33 @@ export default function AddClass() {
         naturalness: yup.string().required(),
         nationality: yup.string().required(),
         birth_date: yup.date().required(),
-        address_street: yup.string().required(),
-        address_number: yup.string().required(),
-        address_district: yup.string().required(),
-        address_cep: yup.string().required(),
-        address_city: yup.string().required(),
-        address_state: yup.string().required(),
+        street: yup.string().required(),
+        number: yup.string().required(),
+        district: yup.string().required(),
+        cep: yup.string().required(),
+        city: yup.string().required(),
+        state: yup.string().required(),
         phone_number: yup.string().required(),
         email: yup.string().email('Digite um email válido').required(),
+        password: yup.string().required(),
+        rg: yup.string().required(),
+        cpf: yup.string().required(),
+    })
+
+    let schema_up = yup.object().shape({
+        name: yup.string().required(),
+        father_name: yup.string().required(),
+        mother_name: yup.string().required(),
+        naturalness: yup.string().required(),
+        nationality: yup.string().required(),
+        birth_date: yup.date().required(),
+        street: yup.string().required(),
+        number: yup.string().required(),
+        district: yup.string().required(),
+        cep: yup.string().required(),
+        city: yup.string().required(),
+        state: yup.string().required(),
+        phone_number: yup.string().required(),
         rg: yup.string().required(),
         cpf: yup.string().required(),
     })
@@ -50,25 +69,29 @@ export default function AddClass() {
     const [birth_date, setBirth] = React.useState('')
     const [education_level, setEdu] = React.useState('')
     const [street, setStreet] = React.useState('')
-    const [address_number, setAdressN] = React.useState('')
-    const [address_district, setAdressD] = React.useState('')
-    const [address_complement, setAdressC] = React.useState('')
-    const [address_cep, setAdressCEP] = React.useState('')
-    const [address_city, setCity] = React.useState('')
-    const [address_state, setState] = React.useState('')
+    const [number, setNumber] = React.useState('')
+    const [district, setDistrict] = React.useState('')
+    const [complement, setComplement] = React.useState('')
+    const [cep, setCep] = React.useState('')
+    const [city, setCity] = React.useState('')
+    const [state, setState] = React.useState('')
     const [phone_number, setPhone] = React.useState('')
     const [email, setEmail] = React.useState('')
+    const [password, setPassword] = React.useState('')
     const [rg, setRg] = React.useState('')
     const [cpf, setCpf] = React.useState('')
     const [classes, setClass] = React.useState('')
     const [school_class, setClassA] = React.useState('')
 
+    const [update, setUpdate] = React.useState(true)
     const [loading, setLoading] = React.useState(false)
 
     async function populateClasses(){
         let response
         try {
             response = await api.get('/school-class')
+
+            console.log(response)
 
             if(response.status === 200) setClass(response.data)
             setClassA(response.data[0].id)
@@ -82,25 +105,26 @@ export default function AddClass() {
         try{
             response = await api.get(`/studant/${id}`);
             const { data } = response;
-            setName(data.name)
-            setSex(data.sex)
-            setFather(data.father_name)
-            setMother(data.mother_name)
-            setNatural(data.naturalness)
-            setNationality(data.nationality)
-            setStreet(data.street)
-            setAdressD(data.address_district)
-            setAdressC(data.address_complement)
-            setAdressCEP(data.address_cep)
-            setCity(data.address_city)
-            setState(data.address_state)
-            setPhone(data.phone_number)
-            setEmail(data.email)
-            setRg(data.rg)
-            setCpf(data.cpf)
-            setBirth(data.birth_date)
-            setEdu(data.formation)
-            setClassA(data.school_class)
+            console.log(data)
+            setName(data.studant.name)
+            setSex(data.studant.sex)
+            setFather(data.studant.father_name)
+            setMother(data.studant.mother_name)
+            setNatural(data.studant.naturalness)
+            setNationality(data.studant.nationality)
+            setStreet(data.address[0].street)
+            setNumber(data.address[0].number)
+            setDistrict(data.address[0].district)
+            setComplement(data.address[0].complement)
+            setCep(data.address[0].cep)
+            setCity(data.address[0].city)
+            setState(data.address[0].state)
+            setPhone(data.studant.phone_number)
+            setRg(data.studant.rg)
+            setCpf(data.studant.cpf)
+            setBirth(data.studant.birth_date)
+            setEdu(data.studant.education_level)
+            setClassA(data.studant.school_class)
         } catch {
             history.push('/add-studant/')
         }
@@ -112,6 +136,7 @@ export default function AddClass() {
         populateClasses()
 
         if(id){
+            setUpdate(false)
             populateForm(id)
         }
 
@@ -124,7 +149,7 @@ export default function AddClass() {
         let response;
         try{
 
-            await schema.validate({
+            await schema_up.validate({
                 name,
                 father_name,
                 mother_name,
@@ -132,13 +157,12 @@ export default function AddClass() {
                 nationality,
                 birth_date,
                 street,
-                address_number,
-                address_district,
-                address_cep,
-                address_city,
-                address_state,
+                number,
+                district,
+                cep,
+                city,
+                state,
                 phone_number,
-                email,
                 rg,
                 cpf,
             }).catch(function(err){
@@ -155,18 +179,16 @@ export default function AddClass() {
                 birth_date,
                 education_level,
                 street,
-                address_number: Number(address_number),
-                address_district,
-                address_complement,
-                address_cep,
-                address_city,
-                address_state,
+                number: Number(number),
+                district,
+                complement,
+                cep,
+                city,
+                state,
                 phone_number,
-                email,
                 rg,
                 cpf,
                 school_class,
-                institute: "1dd26546-67cb-47f2-a490-e20142f3504f",
             })
 
             if(response.status === 200){
@@ -195,16 +217,18 @@ export default function AddClass() {
                 nationality,
                 birth_date,
                 street,
-                address_number,
-                address_district,
-                address_cep,
-                address_city,
-                address_state,
+                number,
+                district,
+                cep,
+                city,
+                state,
                 phone_number,
                 email,
+                password,
                 rg,
                 cpf,
             }).catch(function(err){
+                console.log(err)
                 throw(err.errors)
             })
 
@@ -218,21 +242,20 @@ export default function AddClass() {
                 birth_date,
                 education_level,
                 street,
-                address_number: Number(address_number),
-                address_district,
-                address_complement,
-                address_cep,
-                address_city,
-                address_state,
+                number: Number(number),
+                district,
+                complement,
+                cep,
+                city,
+                state,
                 phone_number,
                 email,
+                password,
                 rg,
                 cpf,
                 school_class,
-                institute: "1dd26546-67cb-47f2-a490-e20142f3504f",
+                account_role: 1
             })
-
-            
 
             if(response.status === 201){
                 toast.success('Aluno Cadastrado')
@@ -242,9 +265,9 @@ export default function AddClass() {
                 setNatural('')
                 setNationality('')
                 setStreet('')
-                setAdressD('')
-                setAdressC('')
-                setAdressCEP('')
+                setDistrict('')
+                setComplement('')
+                setCep('')
                 setCity('')
                 setState('')
                 setPhone('')
@@ -253,6 +276,7 @@ export default function AddClass() {
                 setCpf('')
                 setBirth('')
                 setEdu('')
+                setPassword('')
             }
             
             
@@ -334,7 +358,7 @@ export default function AddClass() {
                             <label>Turma</label>
                             <select value={school_class} onChange={({target}) => setClassA(target.value) } >
                                 {classes && classes.map( item => (
-                                    <option key={item.id} value={item.id} >{item.class_code}</option>
+                                    <option key={item.id} value={item.id} >{item.name}</option>
                                 ))}
                             </select>
                         </fieldset>
@@ -348,32 +372,32 @@ export default function AddClass() {
 
                         <fieldset className={style.number}>
                             <label>Nº:</label>
-                            <input value={address_number} onChange={({target}) => setAdressN(target.value)} type="text" />
+                            <input value={number} onChange={({target}) => setNumber(target.value)} type="text" />
                         </fieldset>
 
                         <fieldset>
                             <label>Bairro:</label>
-                            <input value={address_district} onChange={({target}) => setAdressD(target.value)} type="text" />
+                            <input value={district} onChange={({target}) => setDistrict(target.value)} type="text" />
                         </fieldset>
 
                         <fieldset>
                             <label>Complemento:</label>
-                            <input value={address_complement} onChange={({target}) => setAdressC(target.value)} type="text" />
+                            <input value={complement} onChange={({target}) => setComplement(target.value)} type="text" />
                         </fieldset>
 
                         <fieldset>
                             <label>CEP:</label>
-                            <input value={address_cep} onChange={({target}) => setAdressCEP(target.value)} type="text" />
+                            <input value={cep} onChange={({target}) => setCep(target.value)} type="text" />
                         </fieldset>
 
                         <fieldset>
                             <label>Cidade:</label>
-                            <input value={address_city} onChange={({target}) => setCity(target.value)} type="text" />
+                            <input value={city} onChange={({target}) => setCity(target.value)} type="text" />
                         </fieldset>
 
                         <fieldset>
                             <label>Estado:</label>
-                            <input value={address_state} onChange={({target}) => setState(target.value)} type="text" />
+                            <input value={state} onChange={({target}) => setState(target.value)} type="text" />
                         </fieldset>
                         
                         <h2 className={style.subtitle}>Contato:</h2>
@@ -381,11 +405,6 @@ export default function AddClass() {
                         <fieldset>
                             <label>Celular:</label>
                             <input value={phone_number} onChange={({target}) => setPhone(target.value)} type="text" />
-                        </fieldset>
-
-                        <fieldset>
-                            <label>E-MAIL:</label>
-                            <input value={email} onChange={({target}) => setEmail(target.value)} type="email" />
                         </fieldset>
 
                         <h2 className={style.subtitle}>Documentos:</h2>
@@ -400,6 +419,22 @@ export default function AddClass() {
                             <input value={cpf} onChange={({target}) => setCpf(target.value)} type="text" />
                         </fieldset>
 
+                        {update && <fieldset>
+                            <h2 className={style.subtitle}>Conta:</h2>
+
+                            <fieldset>
+                                <label>E-mail:</label>
+                                <input value={email} onChange={({target}) => setEmail(target.value)} type="email" />
+                            </fieldset>
+
+                            <fieldset>
+                                <label>Senha:</label>
+                                <input value={password} onChange={({target}) => setPassword(target.value)} type="password" />
+                            </fieldset>
+
+                        </fieldset>}
+                        
+                        
 
                         {loading ? <button disabled className={style.submit} type="submit">{id ? 'Atualizar' : 'Cadastrar'}</button> : <button className={style.submit} type="submit">{id ? 'Atualizar' : 'Cadastrar'}</button>}
                     </form>

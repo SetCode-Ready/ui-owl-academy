@@ -6,7 +6,6 @@ import api from '../../config/api'
 import { useHistory, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import * as yup from 'yup'
 
 export default function AddClass() {
 
@@ -15,17 +14,33 @@ export default function AddClass() {
     const {id} = useParams()
     const history = useHistory()
 
-    const [code, setCode] = React.useState('')
-    const [lotacao, setLotacao] = React.useState('')
-    const [categorie, setCategorie] = React.useState()
-    const [ensino, setEnsino] = React.useState(1)
-    const [status, setStatus] = React.useState(true)
+    const [cursos, setCursos] = React.useState()
+    const [course, setCurso] = React.useState('')
+    const [period, setPeriod] = React.useState()
+    const [number_students, setStudents] = React.useState(0)
+    const [initial_date, setInitial] = React.useState()
+    const [final_date, setFinal] = React.useState()
     const [loading, setLoading] = React.useState(false)
     
     const populateClassCategorie = async () => {
-        const response = await api.get('/class-categorie')
+        const response = await api.get('/course')
         
-        setCategorie(response.data);
+        setCursos(response.data);
+        setCurso(response.data[0].id);
+    }
+
+    function formatDate(date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+    
+        if (month.length < 2) 
+            month = '0' + month;
+        if (day.length < 2) 
+            day = '0' + day;
+    
+        return [year, month, day].join('-');
     }
     
     const populateForm = React.useCallback(async (id) => {
@@ -33,10 +48,12 @@ export default function AddClass() {
         try{
             response = await api.get(`/school-class/${id}`);
             const { data } = response;
-        
-            setCode(data.class_code)
-            setLotacao(data.max_students)
-            setStatus(data.status)
+            console.log(data)
+            setPeriod(data.schoolClass.period)
+            setCurso(data.course.id)
+            setStudents(data.schoolClass.number_students)
+            setInitial(formatDate(data.schoolClass.initial_date))
+            setFinal(formatDate(data.schoolClass.final_date))
 
         } catch {
             history.push('/add-class/')
@@ -61,16 +78,12 @@ export default function AddClass() {
         let response;
         try{
 
-            await schema.validate({code, lotacao}).catch(function (err) {
-                throw(err.errors)
-            })
-
             response = await api.put(`/school-class/${id}`, {
-                class_code: code,
-                class_categorie: ensino,
-                max_students: Number(lotacao),
-                status,
-                institute: "7292c035-923b-44dc-9b4d-8803fad202af"
+                period,
+                course,
+                number_students,
+                final_date,
+                initial_date
             })
 
             if(response.status === 200){
@@ -82,18 +95,6 @@ export default function AddClass() {
         }
     }
 
-    yup.setLocale({
-        string:{
-            min: 'O campo código da turma deve ter pelo menos ${min} caracteres'
-        },
-        
-    })
-
-    let schema = yup.object().shape({
-        code: yup.string().min(3).required('preencha todos os campos!'),
-        lotacao: yup.string().required('preencha todos os campos!')
-    })
-
 
     async function handleSubmit(e){
         e.preventDefault()
@@ -102,22 +103,18 @@ export default function AddClass() {
         try {
             setLoading(true)
 
-            await schema.validate({code, lotacao}).catch(function (err) {
-                throw(err.errors)
-            })
-
             response = await api.post('/school-class', {
-                class_code: code,
-                class_categorie: ensino,
-                max_students: Number(lotacao),
-                status,
-                institute: "7292c035-923b-44dc-9b4d-8803fad202af"
+                period,
+                course,
+                number_students,
+                final_date,
+                initial_date
             })
 
             if(response.status === 201){
                 toast.success('Turma Criada!', {autoClose: 2000})
-                setCode('')
-                setLotacao('')
+                setPeriod('')
+                setStudents('')
             }
             
         } catch (error) {
@@ -139,25 +136,18 @@ export default function AddClass() {
                     <h1 className={style.title}>{id ? 'Atualizar Turma' : 'Cadastrar Turma'}</h1>
 
                     <form className={style.form} onSubmit={id ? handleUpdate : handleSubmit} >
+                        
                         <fieldset>
-                            <label>Código da turma</label>
-                            <input value={code} onChange={({target}) => setCode(target.value)} type="text" />
+                            <label>Periodo:</label>
+                            <input value={period} onChange={({target}) => setPeriod(target.value)} type="text" />
                         </fieldset>
                         
                         <fieldset>
-                            <label>Status</label>
-                            <select value={status} onChange={({target}) => setStatus(target.value)} >
-                                <option value={true}>Ativo</option>
-                                <option value={false}>Inativo</option>
-                            </select>
-                        </fieldset>
-                        
-                        <fieldset>
-                            <label>Ensino</label>
-                            <select value={ensino} onChange={({target}) => setEnsino(target.value)}>
-                                {categorie && categorie.map(itens => {
+                            <label>Curso</label>
+                            <select value={course} onChange={({target}) => setCurso(target.value)}>
+                                {cursos && cursos.map(itens => {
                                     return(
-                                        <option key={itens.id} value={itens.id}>{itens.categorie_name}</option>
+                                        <option key={itens.id} value={itens.id}>{itens.name}</option>
                                     )   
                                 })}
                             </select>
@@ -165,7 +155,17 @@ export default function AddClass() {
 
                         <fieldset>
                             <label>Lotação</label>
-                            <input value={lotacao} onChange={({target}) => setLotacao(target.value)} type="number"/>
+                            <input value={number_students} onChange={({target}) => setStudents(target.value)} type="number"/>
+                        </fieldset>
+                    
+                        <fieldset>
+                            <label>Data de inicio:</label>
+                            <input value={initial_date} onChange={({target}) => setInitial(target.value)} type="date" />
+                        </fieldset>
+
+                        <fieldset>
+                            <label>Data de termino:</label>
+                            <input value={final_date} onChange={({target}) => setFinal(target.value)} type="date" />
                         </fieldset>
                         {loading ? <button disabled className={style.submit} type="submit">{id ? 'Atualizar' : 'Cadastrar'}</button> : <button className={style.submit} type="submit">{id ? 'Atualizar' : 'Cadastrar'}</button>}
                     </form>

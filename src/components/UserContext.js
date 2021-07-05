@@ -17,9 +17,10 @@ export function UserStorage({children}){
             })
             window.localStorage.setItem('token', JSON.stringify(response.data.token))
             window.localStorage.setItem('user', JSON.stringify(response.data.user))
+            console.log(response)
             return response
         } catch (error) {
-            toast.error(error)
+            toast.error(error.message)
         } finally{
             setLoding(false)
         }
@@ -30,13 +31,13 @@ export function UserStorage({children}){
         window.localStorage.removeItem('user')
     }   
 
-    function isAuth(){
+    function isAuth(account){
         const storage = JSON.parse(window.localStorage.getItem('user'))
         
-        if(storage){
-            return true
-        } else {
+        if(!storage || storage.account_role.id !== account){
             return false
+        } else {
+            return true
         }
     }
 

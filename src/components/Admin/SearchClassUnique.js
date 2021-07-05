@@ -4,13 +4,20 @@ import {useHistory, useParams} from 'react-router-dom'
 import api from '../../config/api'
 import HeaderAdmin from './HeaderAdmin'
 import style from './searchClassUnique.module.css'
-import perfil from '../../Assets/perfil.jpg'
 import Editar from '../../Assets/Alterar.svg'
 import Deletar from '../../Assets/Deletar.svg'
+import Add from '../../Assets/add.png'
+import AddStudant from './AddStudant'
+import { Modal } from '../ModalContext'
+import Prof from '../../Assets/Professores.svg'
+import Aluno from '../../Assets/Alunos.svg'
 
 export default function SearchClassUnique() {
-  const [content, setContent] = React.useState()
-    const { id } = useParams()
+    const [content, setContent] = React.useState();
+
+    const {state, ChangeState} = Modal();
+
+    const { id } = useParams();
 
     const history = useHistory();
     
@@ -32,7 +39,6 @@ export default function SearchClassUnique() {
       }
     }
 
-
     React.useEffect(() => {
       async function req(){
         try {
@@ -45,9 +51,12 @@ export default function SearchClassUnique() {
 
       req()
     }, [history, id])
+
     
-    return (
-        <>
+    return ( 
+      <>
+        {state === true ? 
+          <>
           <HeaderAdmin/>
             <section className={style.mainContainer}>
               <div className={style.contentContainer}>
@@ -56,9 +65,6 @@ export default function SearchClassUnique() {
                 </div>
                 <div className={style.items}>
                   <ul>
-                    <li className={style.perfil}>
-                      <img src={perfil} alt={"Foto da Turma"}/>
-                    </li>
                     <li className={style.ContainerDetails}>
                       {content && <p>Nome da Turma: {content.schoolClass.name}</p>}
                       {content && <p>Máximo de alunos: {content.schoolClass.number_students}</p>}
@@ -72,12 +78,29 @@ export default function SearchClassUnique() {
                       <img src={Deletar} alt={"Botão de Deletar"}/>
                       <p>Apagar Turma</p>
                     </li>
+                    <li className={style.edit} onClick={ChangeState}>
+                      <img src={Add} alt={"Botão de Cadastrar alunos"}/>
+                      <p>Cadastrar Alunos</p>
+                    </li>
+                    <li className={style.edit} onClick={ChangeState}>
+                      <img src={Aluno} alt={"Botão de Listar Alunos da Turma"}/>
+                      <p>Listar Alunos da Turma</p>
+                    </li>
+                    <li className={style.edit} onClick={ChangeState}>
+                      <img src={Prof} alt={"Botão de Listar Professores da Turma"}/>
+                      <p>Listar Professores da Turma</p>
+                    </li>
                   </ul>
                 </div>
               </div>
-                
             </section>
-        </>
+            </>
+             :
+            <>
+              <AddStudant/>    
+            </>
+          }
+      </>
     )
 }
 

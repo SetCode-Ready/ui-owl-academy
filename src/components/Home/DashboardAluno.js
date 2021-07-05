@@ -33,7 +33,7 @@ export default function DashboardAluno() {
 
     React.useEffect(() => {
         setUser(getUser())
-        const logged = isAuth()
+        const logged = isAuth(3)
     
         if(!logged){
             history.push('/')

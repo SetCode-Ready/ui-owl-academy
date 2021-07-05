@@ -20,6 +20,8 @@ import CreateRoll from './components/Teacher/CreateRoll';
 import DashboardAluno from './components/Home/DashboardAluno';
 import DocumentRequest from './components/Home/DocumentRequest';
 import {UserStorage} from './components/UserContext'
+import AddStudant from './components/Admin/AddStudant';
+import { ModalContextStorage } from './components/ModalContext';
 
 
 function App() {
@@ -28,13 +30,14 @@ function App() {
       <ToastContainer />
       <BrowserRouter>
         <UserStorage>
+        <ModalContextStorage>
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/admin" component={DashboardAdmin}/>
             <Route path="/switch-login/" component={switchLogin}/>
-            <Route path="/login/student" component={Login}/>
-            <Route path="/login/teacher" component={Login}/>
+            <Route path="/login/:user?" component={Login}/>
             <Route path="/recovery-password" component={Recovery}/>
+            <Route path="/teste" component={AddStudant}/>
             
             <Route exact path="/search-class" component={SearchClass}/>
             <Route path="/add-class/:id?" component={AddClass} />
@@ -54,6 +57,7 @@ function App() {
             
             <Route path="/student/documents" component={DocumentRequest}/>
           </Switch>
+        </ModalContextStorage>
         </UserStorage>
       </BrowserRouter>
     </>

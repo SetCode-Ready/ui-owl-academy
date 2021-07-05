@@ -6,6 +6,7 @@ import {ReactComponent as Declaracao} from '../../Assets/declaracao.svg'
 import {ReactComponent as Material} from '../../Assets/material.svg'
 
 export default function DocumentRequest() {
+
     return (
         <>
             <Header/>
@@ -20,7 +21,7 @@ export default function DocumentRequest() {
                         <Declaracao/>
                         <p>Declaração de Matricula</p>
                     </div>
-                    <a href="download/https://files-owl-academy.s3.amazonaws.com/94315b8004e55e19dd974798070b08d2-Screenshot_20210602_104555.png" download className={style.Content}>
+                    <a target="_blank" href="https://files-owl-academy.s3.amazonaws.com/94315b8004e55e19dd974798070b08d2-Screenshot_20210602_104555.png" download className={style.Content} rel="noreferrer">
                         <Material/>
                         <p>Material de Aula</p>
                     </a>

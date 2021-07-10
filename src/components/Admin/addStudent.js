@@ -354,15 +354,6 @@ export default function AddClass() {
                             <input value={education_level} onChange={({target}) => setEdu(target.value)} type="text" />
                         </fieldset>
 
-                        <fieldset>
-                            <label>Turma</label>
-                            <select value={school_class} onChange={({target}) => setClassA(target.value) } >
-                                {classes && classes.map( item => (
-                                    <option key={item.id} value={item.id} >{item.name}</option>
-                                ))}
-                            </select>
-                        </fieldset>
-                        
                         <h2 className={style.subtitle}>Endereço:</h2>
 
                         <fieldset className={style.street}>
@@ -418,23 +409,19 @@ export default function AddClass() {
                             <label>CPF:</label>
                             <input value={cpf} onChange={({target}) => setCpf(target.value)} type="text" />
                         </fieldset>
-
+                        <h2 className={style.subtitle}>Conta:</h2>
                         {update && <fieldset>
-                            <h2 className={style.subtitle}>Conta:</h2>
-
-                            <fieldset>
-                                <label>E-mail:</label>
-                                <input value={email} onChange={({target}) => setEmail(target.value)} type="email" />
-                            </fieldset>
-
-                            <fieldset>
-                                <label>Senha:</label>
-                                <input value={password} onChange={({target}) => setPassword(target.value)} type="password" />
-                            </fieldset>
+                            
+                            <label>E-mail:</label>
+                            <input value={email} onChange={({target}) => setEmail(target.value)} type="email" />
 
                         </fieldset>}
                         
-                        
+                        {update && <fieldset>
+                            <label>Senha:</label>
+                            <input value={password} onChange={({target}) => setPassword(target.value)} type="password" />
+                        </fieldset>
+                        }
 
                         {loading ? <button disabled className={style.submit} type="submit">{id ? 'Atualizar' : 'Cadastrar'}</button> : <button className={style.submit} type="submit">{id ? 'Atualizar' : 'Cadastrar'}</button>}
                     </form>

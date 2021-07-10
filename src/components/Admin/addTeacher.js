@@ -299,19 +299,21 @@ export default function AddClass() {
                             <label>CPF:</label>
                             <input value={cpf} onChange={({target}) => setCpf(target.value)} type="text" />
                         </fieldset>
+                        
+                        <h2 className={style.subtitle}>Conta:</h2>
 
                         {update && <fieldset>
-                            <h2 className={style.subtitle}>Conta:</h2>
 
-                            <fieldset>
-                                <label>E-mail:</label>
-                                <input value={email} onChange={({target}) => setEmail(target.value)} type="email" />
-                            </fieldset>
+                            <label>E-mail:</label>
+                            <input value={email} onChange={({target}) => setEmail(target.value)} type="email" />
+                        
 
-                            <fieldset>
-                                <label>Senha:</label>
-                                <input value={password} onChange={({target}) => setPassword(target.value)} type="password" />
-                            </fieldset>
+                        </fieldset>}
+
+                        {update && <fieldset>
+        
+                            <label>Senha:</label>
+                            <input value={password} onChange={({target}) => setPassword(target.value)} type="password" />
 
                         </fieldset>}
 

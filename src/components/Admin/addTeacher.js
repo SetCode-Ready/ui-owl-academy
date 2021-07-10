@@ -41,6 +41,7 @@ export default function AddClass() {
             response = await api.get('/department')
             console.log(response)
             setDepartaments(response.data)
+            setDepartament(response.data[0].id)
         } catch (error) {
             
         }
@@ -84,7 +85,7 @@ export default function AddClass() {
             setBirth(date)
             setFormation(data.teacher.formation)
             setMarital(data.teacher.marital_status)
-            setDepartament(response.data.department)
+            setDepartament(response.data.department.id)
         } catch {
             history.push('/add-teacher/')
         }

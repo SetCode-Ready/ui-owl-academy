@@ -16,7 +16,7 @@ export default function AddStudant() {
 
     const checkbox = useRef()
 
-    const {state, ChangeState} = Modal()
+    const {ChangeState} = Modal()
 
     const {id} = params
 
@@ -89,7 +89,7 @@ export default function AddStudant() {
     }
 
     return (
-        <div style={{display: state === true ? 'none' : 'flex'}} className={style.Main}>
+        <div className={style.Main}>
             <div className={style.ContainerContent}>
                     <div className={style.ContentHeader} >
                         <h2>Buscar Alunos</h2>
@@ -97,7 +97,7 @@ export default function AddStudant() {
                     </div>
                     <div className={loading === true ? style.ContentLoading : style.ContentBody}>
                         <img src={loadingIMG} alt="loading" />
-                        {contentFilter && contentFilter.map(item => {
+                        {contentFilter && contentFilter.reverse().map(item => {
                             return(
                                 <div to={`/search-student/${item.id}`} key={item.id} className={style.Class}>
                                     <input onChange={handleAddStudant} value={item.id} type="checkbox" ref={checkbox} />
@@ -112,7 +112,7 @@ export default function AddStudant() {
                 </div>
             <div className={style.ContainerButton}>
                 <button className={style.Send} onClick={handleSendStudent} >Enviar</button>
-                <button className={style.Cancel} onClick={ChangeState} >Cancelar</button>
+                <button className={style.Cancel} onClick={() => ChangeState(0)} >Cancelar</button>
             </div>
         </div>
     )

@@ -19,6 +19,7 @@
 }
 
 .Main{
+    display: flex;
     animation: Focus 0.5s linear;
     transition: 3s;
     width: 100%;
@@ -135,6 +136,26 @@
 }
 
 .ContainerButton button{
+    padding:24px 0;
+    color: white;
+    font-weight: 500;
+    font-size: 16px;
+    width: 110px;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+.ContainerButtonSingle{
+    margin-top: 20px;
+    width: 80%;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
+}
+
+.ContainerButtonSingle button{
     padding:24px 0;
     color: white;
     font-weight: 500;

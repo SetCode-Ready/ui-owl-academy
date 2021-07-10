@@ -20,8 +20,8 @@ import CreateRoll from './components/Teacher/CreateRoll';
 import DashboardAluno from './components/Home/DashboardAluno';
 import DocumentRequest from './components/Home/DocumentRequest';
 import {UserStorage} from './components/UserContext'
-import AddStudant from './components/Admin/AddStudant';
 import { ModalContextStorage } from './components/ModalContext';
+import ListStudentClass from './components/Admin/ListStudentClass';
 
 
 function App() {
@@ -37,7 +37,6 @@ function App() {
             <Route path="/switch-login/" component={switchLogin}/>
             <Route path="/login/:user?" component={Login}/>
             <Route path="/recovery-password" component={Recovery}/>
-            <Route path="/teste" component={AddStudant}/>
             
             <Route exact path="/search-class" component={SearchClass}/>
             <Route path="/add-class/:id?" component={AddClass} />
@@ -56,6 +55,9 @@ function App() {
             <Route path="/student/dashboard" component={DashboardAluno}/>
             
             <Route path="/student/documents" component={DocumentRequest}/>
+            
+            
+            <Route path="/teste" component={ListStudentClass}/>
           </Switch>
         </ModalContextStorage>
         </UserStorage>

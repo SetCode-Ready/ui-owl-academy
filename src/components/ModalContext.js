@@ -4,10 +4,10 @@ const ModalContext = createContext()
 
 export function ModalContextStorage({children}) {
 
-    const [state, setState] = React.useState(true)
+    const [state, setState] = React.useState(0)
 
-    function ChangeState(){
-        setState(!state)
+    function ChangeState(num){
+        setState(num)
     }
 
     return (

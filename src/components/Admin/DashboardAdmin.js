@@ -7,6 +7,7 @@ import{ReactComponent as ContTur} from '../../Assets/ControledeTurma.svg'
 import{ReactComponent as Prof} from '../../Assets/Professores.svg'
 import{ReactComponent as Aluno} from '../../Assets/Alunos.svg'
 import{ReactComponent as Class} from '../../Assets/Classroom.svg'
+import { Link } from 'react-router-dom'
 
 export default function DashboardAdmin() {
     return (
@@ -14,41 +15,41 @@ export default function DashboardAdmin() {
             <HeaderAdmin/>
             <section className={style.ContainerMain}>
                 <div className={style.ContainerContent}>
-                    <a className={style.Content} href="/add-teacher">
+                    <Link className={style.Content} to="/add-teacher">
                         <CadasPro/>
                         <p>Cadastrar</p>
                         <span>Professor</span>
-                    </a>
+                    </Link>
                 
-                    <a className={style.Content} href="/add-student">
+                    <Link className={style.Content} to="/add-student">
                         <CadasEst/>
                         <p>Cadastrar</p>
                         <span>Alunos</span>
-                    </a>
+                    </Link>
                     
-                    <a className={style.Content}  href="/add-class">
+                    <Link className={style.Content}  to="/add-class">
                         <ContTur/>
                         <p>Cadastrar</p>
                         <span>Turmas</span>
-                    </a>
+                    </Link>
 
-                    <a className={style.Content} href="/search-teacher">
+                    <Link className={style.Content} to="/search-teacher">
                         <Prof/>
                         <p>Listar</p>
                         <span>Professor</span>
-                    </a>
+                    </Link>
                     
-                    <a className={style.Content} href="/search-student">
+                    <Link className={style.Content} to="/search-student">
                         <Aluno/>
                         <p>Listar</p>
                         <span>Alunos</span>
-                    </a>
+                    </Link>
 
-                    <a className={style.Content} href="/search-class">
+                    <Link className={style.Content} to="/search-class">
                         <Class/>
                         <p>Listar</p>
                         <span>Turmas</span>
-                    </a>
+                    </Link>
                     
                 </div>
             </section>

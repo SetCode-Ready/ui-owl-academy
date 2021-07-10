@@ -4,6 +4,7 @@ import AddStudant from './AddStudant'
 import ClassMainDisplay from './ClassMainDisplay'
 import ListStudentClass from './ListStudentClass'
 import ListTeachersClass from './ListTeachersClass'
+import AddTeachers from './AddTeachers'
 
 
 export default function SearchClassUnique() {
@@ -17,6 +18,8 @@ export default function SearchClassUnique() {
       return <ListStudentClass/>
     case 3:
       return <ListTeachersClass/>
+    case 4:
+      return <AddTeachers/>
     default:
       return <ClassMainDisplay/>
   }

@@ -73,13 +73,13 @@ export default function SearchClassUnique() {
                 <img src={Editar} alt={"Botão de Editar"} />
                 <p>Editar Turma</p>
               </li>
-              <li className={style.delete} onClick={handleDelete}>
-                <img src={Deletar} alt={"Botão de Deletar"} />
-                <p>Apagar Turma</p>
-              </li>
               <li className={style.edit} onClick={() => ChangeState(1)}>
                 <img src={Add} alt={"Botão de Cadastrar alunos"} />
                 <p>Cadastrar Alunos</p>
+              </li>
+              <li className={style.edit} onClick={() => ChangeState(4)}>
+                <img src={Add} alt={"Botão de Cadastrar professores"} />
+                <p>Cadastrar Professor</p>
               </li>
               <li className={style.edit} onClick={() => ChangeState(2)}>
                 <img src={Aluno} alt={"Botão de Listar Alunos da Turma"} />
@@ -88,6 +88,10 @@ export default function SearchClassUnique() {
               <li className={style.edit} onClick={() => ChangeState(3)}>
                 <img src={Prof} alt={"Botão de Listar Professores da Turma"} />
                 <p>Listar Professores da Turma</p>
+              </li>
+              <li className={style.delete} onClick={handleDelete}>
+                <img src={Deletar} alt={"Botão de Deletar"} />
+                <p>Apagar Turma</p>
               </li>
             </ul>
           </div>

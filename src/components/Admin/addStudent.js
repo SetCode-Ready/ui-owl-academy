@@ -409,12 +409,16 @@ export default function AddClass() {
                             <label>CPF:</label>
                             <input value={cpf} onChange={({target}) => setCpf(target.value)} type="text" />
                         </fieldset>
+<<<<<<< HEAD
 
                         {update &&
                             <h2 className={style.subtitle}>Conta:</h2>
                         }
 
+=======
+>>>>>>> 4870a8ddb6cee4ad0b4f7ab86e0127922563db27
                         {update && <fieldset>
+                            <h2 className={style.subtitle}>Conta:</h2>
                             
                             <label>E-mail:</label>
                             <input value={email} onChange={({target}) => setEmail(target.value)} type="email" />

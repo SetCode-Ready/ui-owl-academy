@@ -21,7 +21,7 @@ export default function ListStudentClass() {
       try {
         const response = await api.get(`/school-class/${id}/teachers`);
         console.log(response);
-        if (response.status === 200) setContent(response.data.relatedStudents);
+        if (response.status === 200) setContent(response.data.relatedTeachers);
       } catch (error) {
         toast.error("Serviço temporariamente indisponivel");
         setContent(null);

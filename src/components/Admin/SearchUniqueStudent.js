@@ -53,7 +53,7 @@ export default function SearchClassUnique() {
             <section className={style.mainContainer}>
               <div className={style.contentContainer}>
                 <div className={style.title}>
-                  <h1>Detalhes da Turma</h1>
+                  <h1>Detalhes do Aluno</h1>
                 </div>
                 <div className={style.items}>
                   <ul>
@@ -61,11 +61,10 @@ export default function SearchClassUnique() {
                       <img src={perfil} alt={"Foto do Aluno"}/>
                     </li>
                     <li className={style.ContainerDetails}>
-                      {content && <p>Nome: {content.name}</p>}
-                      {content && <p>CPF: {content.cpf}</p>}
-                      {content && <p>Rua: {content.address_street}</p>}
-                      {content && <p>Telefone: {content.phone_number}</p>}
-                      {content && <p>Email: {content.email}</p>}
+                      {content && <p>Nome: {content.studant.name}</p>}
+                      {content && <p>CPF: {content.studant.cpf}</p>}
+                      {content && <p>Telefone: {content.studant.phone_number}</p>}
+                      {content && <p>Email: {content.studant.email}</p>}
                     </li>
                     <li className={style.edit} onClick={handleEdit}>
                       <img src={Editar} alt={"Botão de Editar"}/>

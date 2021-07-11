@@ -145,7 +145,7 @@ export default function AddClass() {
                 rg,
                 cpf,
                 school_class,
-                account_role: 1
+                account_role: 3
             })
 
             if(response.status === 201){

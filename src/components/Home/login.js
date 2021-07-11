@@ -17,7 +17,7 @@ export default function Home() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    
+
     const {user} = params
 
     let account_role;
@@ -30,20 +30,25 @@ export default function Home() {
       account_role = 1;
     }
 
-    if (email.length > 0 && password.length > 0) {
-      const response = await userLogin(email, password, account_role);
-      if (response.status === 200) {
-        if (account_role === 3) {
-          history.push("/student/dashboard");
-        } else if (account_role === 2) {
-          history.push("/teacher/dashboard");
-        } else {
-          history.push("/admin");
+    try{
+      if (email.length > 0 && password.length > 0) {
+        const response = await userLogin(email, password, account_role);
+        if (response.status === 200) {
+          if (account_role === 3) {
+            history.push("/student/dashboard");
+          } else if (account_role === 2) {
+            history.push("/teacher/dashboard");
+          } else {
+            history.push("/admin");
+          }
         }
+      } else {
+        toast.error("Preencha todos os campos!");
       }
-    } else {
-      toast.error("Preencha todos os campos!");
+    } catch(error){
+      toast.error('Usuário e/ou senha incorretos!')
     }
+
   }
 
   return (

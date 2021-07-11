@@ -20,7 +20,7 @@ export function UserStorage({children}){
             console.log(response)
             return response
         } catch (error) {
-            toast.error(error.message)
+            console.log(error.message)
         } finally{
             setLoding(false)
         }

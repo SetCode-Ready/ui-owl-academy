@@ -6,8 +6,6 @@ import { useHistory, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import perfil from '../../Assets/perfil.jpg'
-import * as yup from 'yup'
-import { format } from 'date-fns'
 
 
 export default function AddClass() {
@@ -68,10 +66,10 @@ export default function AddClass() {
             response = await api.get(`/teacher/${id}`);
             const { data } = response;
 
-            
-            const date = formatDate(data.teacher.birth_date)
+            console.log(response)
+            console.log(data)
 
-            console.log('prof', data)
+            const date = formatDate(data.teacher.birth_date)
             setName(data.teacher.name)
             setSex(data.teacher.sex)
             setFather(data.teacher.father_name)
@@ -85,7 +83,7 @@ export default function AddClass() {
             setBirth(date)
             setFormation(data.teacher.formation)
             setMarital(data.teacher.marital_status)
-            setDepartament(response.data.department.id)
+            setDepartament(data.teacher.department.id)
         } catch {
             history.push('/add-teacher/')
         }
@@ -93,6 +91,7 @@ export default function AddClass() {
 
 
     React.useEffect(() => {
+        console.log(id)
 
         populateDepartament()
 
@@ -103,13 +102,6 @@ export default function AddClass() {
 
 
     }, [history, id, populateForm]);
-
-    yup.setLocale({
-        mixed: {
-            default: 'é inválido',
-            required: 'Preencha todos os campos obrigatórios',
-        },
-    });
 
     const handleUpdate = async(e) => {
         e.preventDefault()

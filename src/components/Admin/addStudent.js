@@ -6,56 +6,9 @@ import { useHistory, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import perfil from '../../Assets/perfil.jpg'
-import * as yup from 'yup'
 
 export default function AddClass() {
     
-    yup.setLocale({
-        mixed: {
-            default: 'é inválido',
-            required: 'Preencha todos os campos obrigatórios',
-            email: 'tem o formato de e-mail inválido',
-        },
-    });
-
-    let schema = yup.object().shape({
-        name: yup.string().required(),
-        father_name: yup.string().required(),
-        mother_name: yup.string().required(),
-        naturalness: yup.string().required(),
-        nationality: yup.string().required(),
-        birth_date: yup.date().required(),
-        street: yup.string().required(),
-        number: yup.string().required(),
-        district: yup.string().required(),
-        cep: yup.string().required(),
-        city: yup.string().required(),
-        state: yup.string().required(),
-        phone_number: yup.string().required(),
-        email: yup.string().email('Digite um email válido').required(),
-        password: yup.string().required(),
-        rg: yup.string().required(),
-        cpf: yup.string().required(),
-    })
-
-    let schema_up = yup.object().shape({
-        name: yup.string().required(),
-        father_name: yup.string().required(),
-        mother_name: yup.string().required(),
-        naturalness: yup.string().required(),
-        nationality: yup.string().required(),
-        birth_date: yup.date().required(),
-        street: yup.string().required(),
-        number: yup.string().required(),
-        district: yup.string().required(),
-        cep: yup.string().required(),
-        city: yup.string().required(),
-        state: yup.string().required(),
-        phone_number: yup.string().required(),
-        rg: yup.string().required(),
-        cpf: yup.string().required(),
-    })
-
     const {id} = useParams()
     const history = useHistory()
 
@@ -80,25 +33,11 @@ export default function AddClass() {
     const [password, setPassword] = React.useState('')
     const [rg, setRg] = React.useState('')
     const [cpf, setCpf] = React.useState('')
-    const [classes, setClass] = React.useState('')
     const [school_class, setClassA] = React.useState('')
 
     const [update, setUpdate] = React.useState(true)
     const [loading, setLoading] = React.useState(false)
 
-    async function populateClasses(){
-        let response
-        try {
-            response = await api.get('/school-class')
-
-            console.log(response)
-
-            if(response.status === 200) setClass(response.data)
-            setClassA(response.data[0].id)
-        } catch (error) {
-            setClass('Classes não encontradas')
-        }
-    }
     
     const populateForm = React.useCallback(async (id) => {
         let response
@@ -132,9 +71,6 @@ export default function AddClass() {
 
 
     React.useEffect(() => {
-
-        populateClasses()
-
         if(id){
             setUpdate(false)
             populateForm(id)
@@ -148,26 +84,6 @@ export default function AddClass() {
 
         let response;
         try{
-
-            await schema_up.validate({
-                name,
-                father_name,
-                mother_name,
-                naturalness,
-                nationality,
-                birth_date,
-                street,
-                number,
-                district,
-                cep,
-                city,
-                state,
-                phone_number,
-                rg,
-                cpf,
-            }).catch(function(err){
-                throw(err.errors)
-            })
 
             response = await api.put(`/studant/${id}`, {
                 name,
@@ -188,7 +104,6 @@ export default function AddClass() {
                 phone_number,
                 rg,
                 cpf,
-                school_class,
             })
 
             if(response.status === 200){
@@ -206,31 +121,7 @@ export default function AddClass() {
 
         let response
         try {
-
             setLoading(true)
-
-            await schema.validate({
-                name,
-                father_name,
-                mother_name,
-                naturalness,
-                nationality,
-                birth_date,
-                street,
-                number,
-                district,
-                cep,
-                city,
-                state,
-                phone_number,
-                email,
-                password,
-                rg,
-                cpf,
-            }).catch(function(err){
-                console.log(err)
-                throw(err.errors)
-            })
 
             response = await api.post('/studant', {
                 name,
